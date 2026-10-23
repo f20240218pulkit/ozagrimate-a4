@@ -22,6 +22,14 @@ python3 -m services.farm_management.app
 
 The local API listens at `http://127.0.0.1:8001`. Leave the terminal running while testing. Records are held in memory and reset on restart.
 
+## Run Irrigation and Alerts
+
+```powershell
+py -3 -m services.irrigation_alerts.app
+```
+
+Listens at `http://127.0.0.1:8003` (macOS/Linux: `python3 -m services.irrigation_alerts.app`). Seeded fixtures: `farm-001` (owner A, worker A granted), `farm-002` (owner B), `farm-003` (owner A, stalled event source for the 503 demo) and `irr-001` (an APPROVED request for the 409 demo). Import `postman/Thomas_Irrigation.postman_collection.json` and run its 13 requests in order against a freshly started server.
+
 ## Test
 
 ```powershell
@@ -45,6 +53,7 @@ Use `Authorization: Bearer demo-owner-a`. `demo-owner-b` represents another owne
 
 | Path | Contents |
 |---|---|
+| `services/irrigation_alerts/` | Irrigation and Alerts service: irrigation requests implemented (Thomas); alert rules pending (Bradley) |
 | `services/farm_management/` | HTTP adapter, application service, repository, models and demonstration access policy |
 | `tests/` | Ten HTTP integration tests including validation and owner isolation |
 | `postman/` | Eleven success/error request scenarios with assertions |

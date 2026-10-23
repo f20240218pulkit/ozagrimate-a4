@@ -1,0 +1,515 @@
+{
+ "info": {
+  "name": "Thomas - OzAgriMate Irrigation Requests",
+  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+  "description": "Run in order against a freshly started Irrigation and Alerts server (port 8003). Only Thomas's two irrigation-request operations are implemented. Fixture tokens are demonstration identities, not production authentication. Approval, dispatch and physical irrigation are not implemented; irr-001 is a seeded APPROVED request."
+ },
+ "variable": [
+  {
+   "key": "baseUrl",
+   "value": "http://127.0.0.1:8003"
+  },
+  {
+   "key": "requestId",
+   "value": ""
+  }
+ ],
+ "item": [
+  {
+   "name": "01 Create irrigation request - worker A",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-worker-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/irrigation-requests",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"paddockId\": \"north-paddock\",\n  \"scheduledStart\": \"2026-11-02T19:00:00Z\",\n  \"durationMinutes\": 90,\n  \"waterDepthMm\": 18.5,\n  \"notes\": \"Pre-heatwave watering\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 201\", function () { pm.response.to.have.status(201); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "if (pm.response.code === 201) { pm.collectionVariables.set(\"requestId\", pm.response.json().id); }",
+       "pm.test(\"Created as PENDING with server-assigned fields\", function () { const v=pm.response.json(); pm.expect(v).to.have.all.keys(\"id\",\"farmId\",\"paddockId\",\"scheduledStart\",\"durationMinutes\",\"waterDepthMm\",\"notes\",\"status\",\"requestedBy\",\"version\"); pm.expect(v.status).to.eql(\"PENDING\"); pm.expect(v.requestedBy).to.eql(\"worker-a\"); pm.expect(v.version).to.eql(1); pm.expect(pm.response.headers.get(\"Location\")).to.eql(\"/farms/farm-001/irrigation-requests/\"+v.id); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "02 Replace pending request details - worker A",
+   "request": {
+    "method": "PUT",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-worker-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/irrigation-requests/{{requestId}}",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"paddockId\": \"south-paddock\",\n  \"scheduledStart\": \"2026-11-03T18:30:00Z\",\n  \"durationMinutes\": 60,\n  \"waterDepthMm\": 12\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Full replacement applied, still PENDING\", function () { const v=pm.response.json(); pm.expect(v.id).to.eql(pm.collectionVariables.get(\"requestId\")); pm.expect(v.paddockId).to.eql(\"south-paddock\"); pm.expect(v.durationMinutes).to.eql(60); pm.expect(v.notes).to.eql(\"\"); pm.expect(v.status).to.eql(\"PENDING\"); pm.expect(v.version).to.eql(2); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "03 Reject replacing an APPROVED request",
+   "request": {
+    "method": "PUT",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/irrigation-requests/irr-001",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"paddockId\": \"north-paddock\",\n  \"scheduledStart\": \"2026-11-02T19:00:00Z\",\n  \"durationMinutes\": 90,\n  \"waterDepthMm\": 18.5,\n  \"notes\": \"Pre-heatwave watering\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 409\", function () { pm.response.to.have.status(409); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code REQUEST_NOT_EDITABLE\", function () { pm.expect(pm.response.json().error.code).to.eql(\"REQUEST_NOT_EDITABLE\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "04 Reject replacing a missing request",
+   "request": {
+    "method": "PUT",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-worker-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/irrigation-requests/irr-999",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"paddockId\": \"north-paddock\",\n  \"scheduledStart\": \"2026-11-02T19:00:00Z\",\n  \"durationMinutes\": 90,\n  \"waterDepthMm\": 18.5,\n  \"notes\": \"Pre-heatwave watering\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 404\", function () { pm.response.to.have.status(404); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code IRRIGATION_REQUEST_NOT_FOUND\", function () { pm.expect(pm.response.json().error.code).to.eql(\"IRRIGATION_REQUEST_NOT_FOUND\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "05 Reject partial PUT body",
+   "request": {
+    "method": "PUT",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-worker-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/irrigation-requests/{{requestId}}",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"durationMinutes\": 30\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code VALIDATION_ERROR\", function () { pm.expect(pm.response.json().error.code).to.eql(\"VALIDATION_ERROR\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "06 Reject duration above safe limit",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-worker-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/irrigation-requests",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"paddockId\": \"north-paddock\",\n  \"scheduledStart\": \"2026-11-02T19:00:00Z\",\n  \"durationMinutes\": 241,\n  \"waterDepthMm\": 18.5,\n  \"notes\": \"Pre-heatwave watering\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code VALIDATION_ERROR\", function () { pm.expect(pm.response.json().error.code).to.eql(\"VALIDATION_ERROR\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "07 Reject caller-supplied status",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-worker-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/irrigation-requests",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"paddockId\": \"north-paddock\",\n  \"scheduledStart\": \"2026-11-02T19:00:00Z\",\n  \"durationMinutes\": 90,\n  \"waterDepthMm\": 18.5,\n  \"notes\": \"Pre-heatwave watering\",\n  \"status\": \"APPROVED\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code VALIDATION_ERROR\", function () { pm.expect(pm.response.json().error.code).to.eql(\"VALIDATION_ERROR\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "08 Reject cross-owner create - owner B",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-b"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/irrigation-requests",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"paddockId\": \"north-paddock\",\n  \"scheduledStart\": \"2026-11-02T19:00:00Z\",\n  \"durationMinutes\": 90,\n  \"waterDepthMm\": 18.5,\n  \"notes\": \"Pre-heatwave watering\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 404\", function () { pm.response.to.have.status(404); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code FARM_NOT_FOUND\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FARM_NOT_FOUND\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "09 Reject worker on farm without grant",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-worker-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-002/irrigation-requests",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"paddockId\": \"north-paddock\",\n  \"scheduledStart\": \"2026-11-02T19:00:00Z\",\n  \"durationMinutes\": 90,\n  \"waterDepthMm\": 18.5,\n  \"notes\": \"Pre-heatwave watering\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 404\", function () { pm.response.to.have.status(404); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code FARM_NOT_FOUND\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FARM_NOT_FOUND\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "10 Reject when farm access is stale",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-003/irrigation-requests",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"paddockId\": \"north-paddock\",\n  \"scheduledStart\": \"2026-11-02T19:00:00Z\",\n  \"durationMinutes\": 90,\n  \"waterDepthMm\": 18.5,\n  \"notes\": \"Pre-heatwave watering\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 503\", function () { pm.response.to.have.status(503); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code FARM_ACCESS_STALE\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FARM_ACCESS_STALE\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "11 Reject missing authentication",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/irrigation-requests",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"paddockId\": \"north-paddock\",\n  \"scheduledStart\": \"2026-11-02T19:00:00Z\",\n  \"durationMinutes\": 90,\n  \"waterDepthMm\": 18.5,\n  \"notes\": \"Pre-heatwave watering\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 401\", function () { pm.response.to.have.status(401); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code UNAUTHENTICATED\", function () { pm.expect(pm.response.json().error.code).to.eql(\"UNAUTHENTICATED\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "12 Reject wrong media type",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "text/plain"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-worker-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/irrigation-requests",
+    "body": {
+     "mode": "raw",
+     "raw": "{\"paddockId\": \"north-paddock\", \"scheduledStart\": \"2026-11-02T19:00:00Z\", \"durationMinutes\": 90, \"waterDepthMm\": 18.5, \"notes\": \"Pre-heatwave watering\"}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 415\", function () { pm.response.to.have.status(415); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code UNSUPPORTED_MEDIA_TYPE\", function () { pm.expect(pm.response.json().error.code).to.eql(\"UNSUPPORTED_MEDIA_TYPE\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "13 Reject unsupported method",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-worker-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/irrigation-requests"
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 405\", function () { pm.response.to.have.status(405); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code METHOD_NOT_ALLOWED\", function () { pm.expect(pm.response.json().error.code).to.eql(\"METHOD_NOT_ALLOWED\"); });",
+       "pm.test(\"Allow header\", function () { pm.expect(pm.response.headers.get(\"Allow\")).to.eql(\"POST\"); });"
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}

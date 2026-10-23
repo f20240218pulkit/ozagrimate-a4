@@ -1,0 +1,14 @@
+PASS  01 Create irrigation request - worker A       POST -> 201 
+PASS  02 Replace pending request details - worker A PUT  -> 200 
+PASS  03 Reject replacing an APPROVED request       PUT  -> 409 REQUEST_NOT_EDITABLE
+PASS  04 Reject replacing a missing request         PUT  -> 404 IRRIGATION_REQUEST_NOT_FOUND
+PASS  05 Reject partial PUT body                    PUT  -> 422 VALIDATION_ERROR
+PASS  06 Reject duration above safe limit           POST -> 422 VALIDATION_ERROR
+PASS  07 Reject caller-supplied status              POST -> 422 VALIDATION_ERROR
+PASS  08 Reject cross-owner create - owner B        POST -> 404 FARM_NOT_FOUND
+PASS  09 Reject worker on farm without grant        POST -> 404 FARM_NOT_FOUND
+PASS  10 Reject when farm access is stale           POST -> 503 FARM_ACCESS_STALE
+PASS  11 Reject missing authentication              POST -> 401 UNAUTHENTICATED
+PASS  12 Reject wrong media type                    POST -> 415 UNSUPPORTED_MEDIA_TYPE
+PASS  13 Reject unsupported method                  GET  -> 405 METHOD_NOT_ALLOWED
+13/13 requests returned the expected status and error code
