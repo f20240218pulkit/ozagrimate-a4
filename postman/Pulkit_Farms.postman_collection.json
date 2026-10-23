@@ -1,0 +1,409 @@
+{
+  "info": {
+    "name": "Pulkit - OzAgriMate Farm Management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Run in order against the local reference server. Only Pulkit's two endpoint operations are implemented. Fixture tokens are demonstration identities, not production authentication."
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8001"
+    },
+    {
+      "key": "farmId",
+      "value": ""
+    },
+    {
+      "key": "createdFarm",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "01 Create farm - owner A",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer demo-owner-a"
+          }
+        ],
+        "url": "{{baseUrl}}/farms",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Riverbend Farm\",\n  \"latitude\": -36.36,\n  \"longitude\": 145.4,\n  \"areaHectares\": 125.5\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 201\", function () { pm.response.to.have.status(201); });",
+              "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+              "if (pm.response.code === 201) { pm.collectionVariables.set(\"farmId\", pm.response.json().id); pm.collectionVariables.set(\"createdFarm\", JSON.stringify(pm.response.json())); }",
+              "pm.test(\"Creation contract\", function () { const v=pm.response.json(); pm.expect(v).to.have.all.keys(\"id\",\"name\",\"latitude\",\"longitude\",\"areaHectares\"); pm.expect(v.name).to.eql(\"Riverbend Farm\"); pm.expect(pm.response.headers.get(\"Location\")).to.eql(\"/farms/\"+v.id); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 Retrieve created farm - owner A",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer demo-owner-a"
+          }
+        ],
+        "url": "{{baseUrl}}/farms/{{farmId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+              "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+              "pm.test(\"Retrieved record matches creation\", function () { pm.expect(pm.response.json()).to.deep.eql(JSON.parse(pm.collectionVariables.get(\"createdFarm\"))); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 Reject cross-owner retrieval",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer demo-owner-b"
+          }
+        ],
+        "url": "{{baseUrl}}/farms/{{farmId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 404\", function () { pm.response.to.have.status(404); });",
+              "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+              "pm.test(\"Error code\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FARM_NOT_FOUND\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 Missing farm",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer demo-owner-a"
+          }
+        ],
+        "url": "{{baseUrl}}/farms/farm-999999"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 404\", function () { pm.response.to.have.status(404); });",
+              "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+              "pm.test(\"Error code\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FARM_NOT_FOUND\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 Missing authentication on creation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/farms",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Riverbend Farm\",\n  \"latitude\": -36.36,\n  \"longitude\": 145.4,\n  \"areaHectares\": 125.5\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 401\", function () { pm.response.to.have.status(401); });",
+              "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+              "pm.test(\"Error code\", function () { pm.expect(pm.response.json().error.code).to.eql(\"UNAUTHENTICATED\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 Missing authentication on retrieval",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/farms/{{farmId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 401\", function () { pm.response.to.have.status(401); });",
+              "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+              "pm.test(\"Error code\", function () { pm.expect(pm.response.json().error.code).to.eql(\"UNAUTHENTICATED\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "07 Worker cannot create farm",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer demo-worker-a"
+          }
+        ],
+        "url": "{{baseUrl}}/farms",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Riverbend Farm\",\n  \"latitude\": -36.36,\n  \"longitude\": 145.4,\n  \"areaHectares\": 125.5\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 403\", function () { pm.response.to.have.status(403); });",
+              "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+              "pm.test(\"Error code\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FORBIDDEN\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "08 Negative area rejected",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer demo-owner-a"
+          }
+        ],
+        "url": "{{baseUrl}}/farms",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Riverbend Farm\",\n  \"latitude\": -36.36,\n  \"longitude\": 145.4,\n  \"areaHectares\": -1\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+              "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+              "pm.test(\"Error code\", function () { pm.expect(pm.response.json().error.code).to.eql(\"VALIDATION_ERROR\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "09 Caller cannot assign ownership",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer demo-owner-a"
+          }
+        ],
+        "url": "{{baseUrl}}/farms",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Riverbend Farm\",\n  \"latitude\": -36.36,\n  \"longitude\": 145.4,\n  \"areaHectares\": 125.5,\n  \"ownerUserId\": \"owner-b\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+              "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+              "pm.test(\"Error code\", function () { pm.expect(pm.response.json().error.code).to.eql(\"VALIDATION_ERROR\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "10 Malformed JSON rejected",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer demo-owner-a"
+          }
+        ],
+        "url": "{{baseUrl}}/farms",
+        "body": {
+          "mode": "raw",
+          "raw": "{",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 400\", function () { pm.response.to.have.status(400); });",
+              "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+              "pm.test(\"Error code\", function () { pm.expect(pm.response.json().error.code).to.eql(\"INVALID_JSON\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "11 Incorrect media type rejected",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/plain"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer demo-owner-a"
+          }
+        ],
+        "url": "{{baseUrl}}/farms",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Riverbend Farm\",\n  \"latitude\": -36.36,\n  \"longitude\": 145.4,\n  \"areaHectares\": 125.5\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 415\", function () { pm.response.to.have.status(415); });",
+              "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+              "pm.test(\"Error code\", function () { pm.expect(pm.response.json().error.code).to.eql(\"UNSUPPORTED_MEDIA_TYPE\"); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

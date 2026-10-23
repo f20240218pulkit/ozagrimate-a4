@@ -1,0 +1,9 @@
+Farm Management reference implementation
+Verification: python -m unittest discover -s tests -v
+Result: 10 integration tests passed, using a real loopback HTTP server.
+Each test has isolated in-memory state; parameterised subcases cover additional invalid inputs.
+Postman collection: 11 saved request scenarios. Originally checked programmatically; subsequently run by Pulkit through Postman web with Desktop Agent, with all 33 assertions passing.
+Production targets, other teammates' endpoints and physical irrigation are not validated.
+Programmatic replay of all 11 saved Postman request definitions also passed; see Postman_Request_Replay.txt.
+
+USER POSTMAN VERIFICATION (23 October 2026): supplied screenshot shows 33 assertions passed, 0 failed, 0 skipped, 0 errors; 11 request scenarios across two farm endpoints. Evidence: evidence/Postman_Run_2026-10-23.png.

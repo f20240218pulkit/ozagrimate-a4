@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1770" viewBox="0 0 2400 1770">
+<rect width="100%" height="100%" fill="white"/>
+<text x="40" y="77" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="32" font-weight="700" fill="#183047">OzAgriMate proposed C4 Deployment Diagram</text>
+<text x="40" y="107" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Australian-region managed infrastructure | production proposal; the prototype runs locally</text>
+<rect x="30" y="160" width="460" height="1300" fill="#f7fafc" stroke="#9bb0c0" stroke-width="2"/>
+<text x="46" y="193" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">On-farm / user devices</text>
+<rect x="55" y="240" width="410" height="170" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="260.0" y="276" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Mobile Device</text>
+<text x="260.0" y="302" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Deployment Node]</text>
+<text x="260.0" y="332" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Mobile App instance; caches</text>
+<text x="260.0" y="357" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">observations for 72 hours.</text>
+<rect x="55" y="530" width="410" height="170" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="260.0" y="566" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Farm Gateway Device</text>
+<text x="260.0" y="592" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Deployment Node]</text>
+<text x="260.0" y="622" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Farm Edge Gateway instance; 72-hour</text>
+<text x="260.0" y="647" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">durable buffer.</text>
+<rect x="55" y="820" width="410" height="170" fill="#eee8e3" stroke="#42647e" stroke-width="2"/>
+<text x="260.0" y="856" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Irrigation Controller</text>
+<text x="260.0" y="882" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[External Node]</text>
+<text x="260.0" y="912" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Last approved schedule for 48 hours;</text>
+<text x="260.0" y="937" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">local limits and override.</text>
+<rect x="55" y="1110" width="410" height="170" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="260.0" y="1146" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">User Computer</text>
+<text x="260.0" y="1172" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Deployment Node]</text>
+<text x="260.0" y="1202" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Browser executes Web App instance.</text>
+<rect x="550" y="160" width="1790" height="1290" fill="#f7fafc" stroke="#9bb0c0" stroke-width="2"/>
+<text x="566" y="193" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Australian primary region [Deployment Node] - proposed managed environment</text>
+<rect x="600" y="240" width="500" height="170" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="850.0" y="276" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Regional Edge Services</text>
+<text x="850.0" y="302" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Managed Deployment Node]</text>
+<text x="850.0" y="332" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">API Gateway and Web App hosting instances;</text>
+<text x="850.0" y="357" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">TLS ingress.</text>
+<rect x="1710" y="240" width="560" height="170" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="1990.0" y="276" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Regional Identity Services</text>
+<text x="1990.0" y="302" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Managed Deployment Node]</text>
+<text x="1990.0" y="332" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Identity and Access instance; OAuth and grant</text>
+<text x="1990.0" y="357" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">invalidation.</text>
+<rect x="600" y="520" width="770" height="380" fill="#f7fafc" stroke="#9bb0c0" stroke-width="2"/>
+<text x="616" y="553" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Availability Zone A [Deployment Node]</text>
+<rect x="630" y="590" width="710" height="270" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="985.0" y="626" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Managed Application Compute A</text>
+<text x="985.0" y="652" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Deployment Node: ready instances]</text>
+<rect x="1490" y="520" width="780" height="380" fill="#f7fafc" stroke="#9bb0c0" stroke-width="2"/>
+<text x="1506" y="553" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Availability Zone B [Deployment Node]</text>
+<rect x="1520" y="590" width="720" height="270" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="1880.0" y="626" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Managed Application Compute B</text>
+<text x="1880.0" y="652" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Deployment Node: ready instances]</text>
+<rect x="650" y="660" width="650" height="32" fill="#edf6fd" stroke="#8ba8be" stroke-width="1"/>
+<text x="660" y="681" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Farm Management A [Container Instance] - farms / grants</text>
+<rect x="650" y="698" width="650" height="32" fill="#edf6fd" stroke="#8ba8be" stroke-width="1"/>
+<text x="660" y="719" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Telemetry A [Container Instance] - readings</text>
+<rect x="650" y="736" width="650" height="32" fill="#edf6fd" stroke="#8ba8be" stroke-width="1"/>
+<text x="660" y="757" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Irrigation and Alerts A [Container Instance] - schedules / alerts</text>
+<rect x="650" y="774" width="650" height="32" fill="#edf6fd" stroke="#8ba8be" stroke-width="1"/>
+<text x="660" y="795" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">AI Recommendation A [Container Instance] - explainable advice</text>
+<rect x="650" y="812" width="650" height="32" fill="#edf6fd" stroke="#8ba8be" stroke-width="1"/>
+<text x="660" y="833" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Integration Adapters A [Container Instance] - external exchanges</text>
+<rect x="1540" y="660" width="650" height="32" fill="#edf6fd" stroke="#8ba8be" stroke-width="1"/>
+<text x="1550" y="681" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Farm Management B [Container Instance] - farms / grants</text>
+<rect x="1540" y="698" width="650" height="32" fill="#edf6fd" stroke="#8ba8be" stroke-width="1"/>
+<text x="1550" y="719" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Telemetry B [Container Instance] - readings</text>
+<rect x="1540" y="736" width="650" height="32" fill="#edf6fd" stroke="#8ba8be" stroke-width="1"/>
+<text x="1550" y="757" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Irrigation and Alerts B [Container Instance] - schedules / alerts</text>
+<rect x="1540" y="774" width="650" height="32" fill="#edf6fd" stroke="#8ba8be" stroke-width="1"/>
+<text x="1550" y="795" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">AI Recommendation B [Container Instance] - explainable advice</text>
+<rect x="1540" y="812" width="650" height="32" fill="#edf6fd" stroke="#8ba8be" stroke-width="1"/>
+<text x="1550" y="833" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Integration Adapters B [Container Instance] - external exchanges</text>
+<rect x="600" y="1080" width="500" height="210" fill="#e3f0df" stroke="#42647e" stroke-width="2"/>
+<text x="850.0" y="1116" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Multi-zone Messaging</text>
+<text x="850.0" y="1142" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Managed Deployment Node]</text>
+<text x="850.0" y="1172" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Event Broker instances; durable acceptance,</text>
+<text x="850.0" y="1197" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">replay and acknowledgements.</text>
+<rect x="1190" y="1080" width="550" height="210" fill="#e3f0df" stroke="#42647e" stroke-width="2"/>
+<text x="1465.0" y="1116" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Multi-zone Data Platform</text>
+<text x="1465.0" y="1142" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Managed Deployment Node]</text>
+<text x="1465.0" y="1172" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Farm Store; Telemetry Store; service-owned</text>
+<text x="1465.0" y="1197" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Operations Store partitions.</text>
+<rect x="1830" y="1080" width="440" height="210" fill="#e3f0df" stroke="#42647e" stroke-width="2"/>
+<text x="2050.0" y="1116" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Regional Operations</text>
+<text x="2050.0" y="1142" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Managed Deployment Node]</text>
+<text x="2050.0" y="1172" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Australian logs, audit storage, metrics</text>
+<text x="2050.0" y="1197" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">and release controls.</text>
+<rect x="550" y="1490" width="1790" height="230" fill="#f7fafc" stroke="#9bb0c0" stroke-width="2"/>
+<text x="566" y="1523" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Australian recovery region [Deployment Node] - proposed recovery capability</text>
+<rect x="590" y="1545" width="1700" height="140" fill="#e3f0df" stroke="#42647e" stroke-width="2"/>
+<text x="1440.0" y="1581" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Recovery and Backup Services</text>
+<text x="1440.0" y="1607" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Managed Deployment Node]</text>
+<text x="1440.0" y="1637" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Encrypted database backups / replication; broker recovery configuration; service redeployment. Proposed RTO 4 hours, RPO 15 minutes.</text>
+<polyline points="465,325 600,325" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="600,325 587.0,319.0 587.0,331.0" fill="#486174"/>
+<rect x="481" y="290" width="62.2890625" height="22" fill="white" stroke="white" stroke-width="0"/>
+<text x="485" y="308" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#486174">HTTPS</text>
+<polyline points="465,1195 520,1195 520,370 600,370" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="600,370 587.0,364.0 587.0,376.0" fill="#486174"/>
+<rect x="469" y="947" width="62.2890625" height="22" fill="white" stroke="white" stroke-width="0"/>
+<text x="473" y="965" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#486174">HTTPS</text>
+<polyline points="465,615 550,615 550,460 850,460 850,410" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="850,410 844.0,423.0 856.0,423.0" fill="#486174"/>
+<rect x="566" y="434" width="320.140625" height="22" fill="white" stroke="white" stroke-width="0"/>
+<text x="570" y="452" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#486174">TLS: telemetry / approved schedules</text>
+<polyline points="260,700 260,820" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="260,820 266.0,807.0 254.0,807.0" fill="#486174"/>
+<rect x="66" y="750" width="226.03125" height="22" fill="white" stroke="white" stroke-width="0"/>
+<text x="70" y="768" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#486174">Local approved execution</text>
+<polyline points="1100,325 1710,325" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1710,325 1697.0,319.0 1697.0,331.0" fill="#486174"/>
+<rect x="1246" y="294" width="209.3359375" height="22" fill="white" stroke="white" stroke-width="0"/>
+<text x="1250" y="312" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#486174">Validate tokens / grants</text>
+<polyline points="920,410 920,590" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="920,590 926.0,577.0 914.0,577.0" fill="#486174"/>
+<rect x="646" y="474" width="219.84375" height="22" fill="white" stroke="white" stroke-width="0"/>
+<text x="650" y="492" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#486174">Route to ready instances</text>
+<polyline points="1040,410 1430,410 1430,470 1850,470 1850,590" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1850,590 1856.0,577.0 1844.0,577.0" fill="#486174"/>
+<rect x="1546" y="439" width="219.84375" height="22" fill="white" stroke="white" stroke-width="0"/>
+<text x="1550" y="457" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#486174">Route to ready instances</text>
+<polyline points="850,860 850,1080" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="850,1080 856.0,1067.0 844.0,1067.0" fill="#486174"/>
+<rect x="661" y="961" width="162.3125" height="22" fill="white" stroke="white" stroke-width="0"/>
+<text x="665" y="979" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#486174">Publish / consume</text>
+<polyline points="1770,860 1770,960 1050,960 1050,1080" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1050,1080 1056.0,1067.0 1044.0,1067.0" fill="#486174"/>
+<rect x="1176" y="935" width="162.3125" height="22" fill="white" stroke="white" stroke-width="0"/>
+<text x="1180" y="953" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#486174">Publish / consume</text>
+<polyline points="1200,860 1200,1000 1465,1000 1465,1080" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1465,1080 1471.0,1067.0 1459.0,1067.0" fill="#486174"/>
+<rect x="1196" y="1014" width="226.8984375" height="22" fill="white" stroke="white" stroke-width="0"/>
+<text x="1200" y="1032" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#486174">Scoped store connections</text>
+<polyline points="1950,860 1950,980 1640,980 1640,1080" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1640,1080 1646.0,1067.0 1634.0,1067.0" fill="#486174"/>
+<rect x="1756" y="1004" width="226.8984375" height="22" fill="white" stroke="white" stroke-width="0"/>
+<text x="1760" y="1022" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#486174">Scoped store connections</text>
+<polyline points="2050,900 2050,1080" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="2050,1080 2056.0,1067.0 2044.0,1067.0" fill="#486174"/>
+<rect x="2061" y="951" width="129.6171875" height="22" fill="white" stroke="white" stroke-width="0"/>
+<text x="2065" y="969" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#486174">Metrics / audit</text>
+<polyline points="1465,1290 1465,1545" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1465,1545 1471.0,1532.0 1459.0,1532.0" fill="#486174"/>
+<rect x="1106" y="1399" width="450.8515625" height="22" fill="white" stroke="white" stroke-width="0"/>
+<text x="1110" y="1417" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#486174">Encrypted backups / replication; measure actual lag</text>
+<text x="40" y="1523" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Prototype deployment</text>
+<text x="40" y="1564" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">One local Python process</text>
+<text x="40" y="1594" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">127.0.0.1:8001</text>
+<text x="40" y="1624" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Farm Management + in-memory data</text>
+<text x="40" y="1654" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">HTTP + demonstration identities</text>
+<text x="40" y="1751" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Scaling, quorum/failover settings, replica counts, recovery lag and provider residency require validation; no cloud resources have been deployed.</text>
+</svg>

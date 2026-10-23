@@ -1,0 +1,13 @@
+Programmatic replay of saved Postman request definitions against local HTTP server.
+01 Create farm - owner A : PASS (201)
+02 Retrieve created farm - owner A : PASS (200)
+03 Reject cross-owner retrieval : PASS (404)
+04 Missing farm : PASS (404)
+05 Missing authentication on creation : PASS (401)
+06 Missing authentication on retrieval : PASS (401)
+07 Worker cannot create farm : PASS (403)
+08 Negative area rejected : PASS (422)
+09 Caller cannot assign ownership : PASS (422)
+10 Malformed JSON rejected : PASS (400)
+11 Incorrect media type rejected : PASS (415)
+11/11 request scenarios passed. Postman JavaScript assertions were inspected; the Postman desktop app was not run.
