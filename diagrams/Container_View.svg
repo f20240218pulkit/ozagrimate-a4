@@ -40,8 +40,8 @@
 <text x="1140.0" y="537" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">reconnection.</text>
 <rect x="1440" y="420" width="510" height="150" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
 <text x="1695.0" y="456" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Identity and Access</text>
-<text x="1695.0" y="482" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Container: managed OAuth + grants]</text>
-<text x="1695.0" y="512" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Issues tokens; manages scoped access and</text>
+<text x="1695.0" y="482" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Container: managed OAuth identity]</text>
+<text x="1695.0" y="512" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Issues tokens; manages identity and token</text>
 <text x="1695.0" y="537" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">revocation.</text>
 <rect x="880" y="680" width="500" height="150" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
 <text x="1130.0" y="716" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">API Gateway</text>
@@ -61,8 +61,8 @@
 <rect x="1440" y="940" width="510" height="160" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
 <text x="1695.0" y="976" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Irrigation and Alerts</text>
 <text x="1695.0" y="1002" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Container: backend service]</text>
-<text x="1695.0" y="1032" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Owns approved schedules, rules and baseline</text>
-<text x="1695.0" y="1057" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">alerts.</text>
+<text x="1695.0" y="1032" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Owns schedules, rules and alerts; maintains</text>
+<text x="1695.0" y="1057" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">a farm and grant read model.</text>
 <rect x="400" y="1200" width="440" height="150" fill="#e3f0df" stroke="#42647e" stroke-width="2"/>
 <text x="620.0" y="1236" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Farm Store</text>
 <text x="620.0" y="1262" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Container: managed database]</text>
@@ -76,8 +76,8 @@
 <rect x="1440" y="1200" width="510" height="150" fill="#e3f0df" stroke="#42647e" stroke-width="2"/>
 <text x="1695.0" y="1236" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Operations Store</text>
 <text x="1695.0" y="1262" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Container: managed database]</text>
-<text x="1695.0" y="1292" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Service-owned partitions for schedules, rules</text>
-<text x="1695.0" y="1317" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">and advice.</text>
+<text x="1695.0" y="1292" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Service-owned schedules, rules, advice and</text>
+<text x="1695.0" y="1317" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">farm / grant projection.</text>
 <rect x="400" y="1470" width="440" height="160" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
 <text x="620.0" y="1506" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">AI Recommendation</text>
 <text x="620.0" y="1532" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Container: isolated inference service]</text>
@@ -169,8 +169,9 @@
 <text x="1155" y="1152" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#486174">Publish accepted events</text>
 <polyline points="1360,1275 1400,1275 1400,1130 1550,1130 1550,1100" fill="none" stroke="#486174" stroke-width="2"/>
 <polygon points="1550,1100 1544.0,1113.0 1556.0,1113.0" fill="#486174"/>
-<rect x="1451" y="1109" width="234.0546875" height="22" fill="white" stroke="white" stroke-width="0"/>
-<text x="1455" y="1127" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#486174">Consume accepted events</text>
+<rect x="1451" y="1109" width="240" height="46" fill="white" stroke="white" stroke-width="0"/>
+<text x="1455" y="1127" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#486174">Consume readings, advice</text>
+<text x="1455" y="1150" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#486174">and farm / grant events</text>
 <polyline points="1695,1100 1695,1200" fill="none" stroke="#486174" stroke-width="2"/>
 <polygon points="1695,1200 1701.0,1187.0 1689.0,1187.0" fill="#486174"/>
 <rect x="1706" y="1154" width="110.0" height="22" fill="white" stroke="white" stroke-width="0"/>
@@ -221,4 +222,8 @@
 <text x="650" y="1437" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#486174">Publish advice events</text>
 <text x="400" y="1779" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Legend: blue = application/container; green = data or messaging; grey/brown = people or external systems.</text>
 <text x="400" y="1809" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Managed identities and policies secure service, broker and store access. Extensions are outside the prototype.</text>
+<polyline points="840,1060 860,1060 860,1165 1030,1165 1030,1200" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1030,1200 1036,1187 1024,1187" fill="#486174"/>
+<rect x="676" y="1170" width="250" height="24" fill="white"/>
+<text x="680" y="1188" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#486174">Publish farm / grant events</text>
 </svg>
