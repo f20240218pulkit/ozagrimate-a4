@@ -11,10 +11,16 @@
     "Title": "ADR-07 Maintain an event-fed farm access projection inside Irrigation and Alerts",
     "Status": "Proposed",
     "Context": "Irrigation and Alerts must confirm farm existence and caller access on every request, but Farm Management owns farms and grants in its own store (ADR-01). ASR19 requires revocation within one minute; ASR26 forbids cross-farm leakage. Alternatives: a shared farm database couples schemas and releases and breaks data ownership; a synchronous call per request adds latency and makes irrigation unavailable whenever Farm Management fails; long-lived response caches risk acting on revoked access. A local copy is safe only if its staleness is bounded and detectable.",
-    "Decision": "Farm Management records farm and grant changes in an outbox and publishes versioned, per-farm-ordered events through the Event Broker. Irrigation and Alerts applies them to its own read-only projection: duplicate event IDs are ignored, older versions are discarded, and version gaps trigger resynchronisation from a snapshot. Source heartbeats advance a freshness watermark. New protected mutations return 503 when the watermark is older than 60 seconds or resynchronisation is pending. The prototype seeds the projection from fixture events and implements the deduplication, ordering, gap and freshness rules.",
+    "Decision": "Farm Management records farm and grant changes in an outbox and publishes versioned, per-farm-ordered events through the Event Broker. Irrigation and Alerts applies them to its own read-only projection: duplicate event IDs are ignored, older versions are discarded, and version gaps trigger resynchronisation from a snapshot. Source heartbeats advance a freshness watermark. New protected mutations return 503 when the watermark is older than 60 seconds or resynchronisation is pending. The prototype seeds the projection from fixture events and implements the deduplication, ordering, gap-recovery, snapshot and freshness rules.",
     "Consequences": "Irrigation keeps working through brief Farm Management outages without shared tables or per-request coupling. Eventual consistency means mutations may be refused during broker delays, reducing availability. The outbox, heartbeats, snapshots and replay add operational complexity. One-minute revocation depends on measured broker latency and remains unvalidated in production.",
-    "Compliance": "Automated tests cover revoked grants, duplicate, out-of-order and gap events, and stale watermarks. Production monitoring alerts when projection lag exceeds 30 seconds."
+    "Compliance": "Automated tests cover revoked grants, duplicate, out-of-order and gap events, gap recovery and stale watermarks. Production monitoring alerts when projection lag exceeds 30 seconds."
   },
-  "limits": {"Title": 20, "Context": 100, "Decision": 100, "Consequences": 60, "Compliance": 30},
+  "limits": {
+    "Title": 20,
+    "Context": 100,
+    "Decision": 100,
+    "Consequences": 60,
+    "Compliance": 30
+  },
   "runtime_explanation": "Worker creates and edits a validated PENDING request; planned owner approval sends a time-limited schedule to the field controller."
 }

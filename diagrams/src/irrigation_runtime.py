@@ -6,8 +6,8 @@ from drawlib import Canvas, BLUE, GREY, BROWN, PLANNED, LINE, INK, BORDER
 
 PARTS = [  # title lines, tag, description, fill
     (["Farm Worker"], "[Person]", "Requests watering", GREY),
-    (["Mobile App"], "[Container]", "Offline field client", GREY),
-    (["API Gateway"], "[Container]", "Routes REST calls", GREY),
+    (["Mobile App"], "[Container: target]", "Not in prototype", GREY),
+    (["API Gateway"], "[Container: target]", "Not in prototype", GREY),
     (["REST Controller"], "[Component: api.py]", "Parses; maps errors", BLUE),
     (["Irrigation", "Application Service"], "[irrigation_service.py]", "Request lifecycle", BLUE),
     (["Farm Access", "Projection"], "[farm_projection.py]", "Fresh farm grants", BLUE),
@@ -22,7 +22,7 @@ W = xs[-1] + 190
 H = 2200
 c = Canvas(W, H)
 c.text(40, 77, "OzAgriMate Runtime Diagram 2 - Irrigation request and processing (UML sequence)", 32, "bold", "start")
-c.text(40, 107, "Irrigation and Alerts container | steps 1-17 are implemented by POST and PUT; steps 18-22 are planned capabilities", 19, "normal", "start")
+c.text(40, 107, "Irrigation and Alerts container | prototype implements the REST Controller to Repository steps (4-9, 14-15); dashed Mobile App and API Gateway are target architecture; steps 18-22 are planned", 19, "normal", "start")
 
 # Section backgrounds are drawn first so lifelines sit on top of them.
 SECTIONS = []
@@ -52,7 +52,7 @@ LIFE_END = y + 10
 for x, (title, tag, desc, fill) in zip(xs, PARTS):
     c.arrow([(x, TOP + BH), (x, LIFE_END)], color="#9bb0c0", width=2, dashed=True, head=False)
 for x, (title, tag, desc, fill) in zip(xs, PARTS):
-    c.rect(x - BW / 2, TOP, BW, BH, fill)
+    c.rect(x - BW / 2, TOP, BW, BH, fill, dashed="target" in tag)
     ty = TOP + 32
     for line in title:
         c.text(x, ty, line, 20, "bold")
@@ -109,12 +109,14 @@ for start, rows, planned in [(rows_a, A, False), (rows_b, B, False), (rows_c, C,
 ny = LIFE_END + 50
 c.text(40, ny, "Safe state: after 48 hours without cloud contact the controller stops automatic watering and reverts to manual control.", 18, "italic", "start")
 c.text(40, ny + 30, "A disconnected controller cannot receive cloud cancellations; schedule expiry and local overrides are the safeguard (ADR-03).", 18, "italic", "start")
-ly = ny + 85
+c.text(40, ny + 60, "Prototype: Mobile App and API Gateway are not implemented. Postman calls the REST Controller directly at 127.0.0.1:8003, standing in for steps 1-3, 10-13 and 16-17.", 18, "italic", "start")
+ly = ny + 115
 c.arrow([(40, ly), (160, ly)]); c.text(175, ly + 6, "Synchronous call", 18, "normal", "start")
 c.arrow([(470, ly), (590, ly)], dashed=True, open_head=True); c.text(605, ly + 6, "Return", 18, "normal", "start")
 c.arrow([(820, ly), (940, ly)], color="#9a6b12", dashed=True); c.text(955, ly + 6, "Planned interaction (not implemented)", 18, "normal", "start")
 c.rect(1440, ly - 18, 50, 32, BLUE); c.text(1505, ly + 6, "Irrigation and Alerts component", 18, "normal", "start")
 c.rect(1880, ly - 18, 50, 32, GREY); c.text(1945, ly + 6, "Person / other container", 18, "normal", "start")
+c.rect(2280, ly - 18, 50, 32, GREY, dashed=True); c.text(2345, ly + 6, "Target container (not in prototype)", 18, "normal", "start")
 
 # Crop canvas height to content
 final_h = int(ly + 60)

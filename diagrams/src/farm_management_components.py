@@ -16,7 +16,7 @@ c.element(X1, 150, W, H, "Web App / Mobile App", "[Container: client application
           ["Farm owners create and view farms."], GREY)
 c.element(X2, 150, W, H, "API Gateway", "[Container: managed HTTP gateway]",
           ["Routes /api/v1 requests; rate-limits", "and authenticates callers."], GREY)
-c.element(X3, 150, W, H, "Identity and Access", "[Container: managed OAuth + grants]",
+c.element(X3, 150, W, H, "Identity and Access", "[Container: managed OAuth identity]",
           ["Issues and verifies access tokens."], GREY)
 
 # Container boundary
