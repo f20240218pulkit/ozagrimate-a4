@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2790" height="2179" viewBox="0 0 2790 2179">
+<rect width="100%" height="100%" fill="white"/>
+<text x="40" y="77" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="32" font-weight="700" fill="#183047">OzAgriMate Runtime Diagram 2 - Irrigation request and processing (UML sequence)</text>
+<text x="40" y="107" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Irrigation and Alerts container | prototype implements the REST Controller to Repository steps (4-9, 14-15); dashed Mobile App and API Gateway are target architecture; steps 18-22 are planned</text>
+<rect x="40" y="370" width="2710" height="694" fill="#f7fafc" stroke="#9bb0c0" stroke-width="2"/>
+<text x="56" y="400" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="700" fill="#183047">Create - implemented: POST /farms/{farmId}/irrigation-requests</text>
+<rect x="40" y="1088" width="2710" height="404" fill="#f7fafc" stroke="#9bb0c0" stroke-width="2"/>
+<text x="56" y="1118" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="700" fill="#183047">opt [request is still PENDING] - implemented: PUT /farms/{farmId}/irrigation-requests/{requestId}</text>
+<rect x="40" y="1516" width="2710" height="404" fill="#fbf5e6" stroke="#b08a3c" stroke-width="2" stroke-dasharray="14 9"/>
+<text x="56" y="1546" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="700" fill="#7a5a17">PLANNED - outside the two implemented endpoints; the prototype never applies water</text>
+<polyline points="170,300 170,1954" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="440,300 440,1954" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="710,300 710,1954" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="980,300 980,1954" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="1250,300 1250,1954" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="1520,300 1520,1954" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="1790,300 1790,1954" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="2060,300 2060,1954" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="2330,300 2330,1954" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="2600,300 2600,1954" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<rect x="45.0" y="150" width="250" height="150" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
+<text x="170" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Farm Worker</text>
+<text x="170" y="209" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[Person]</text>
+<text x="170" y="237" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Requests watering</text>
+<rect x="315.0" y="150" width="250" height="150" fill="#e9edf1" stroke="#42647e" stroke-width="2" stroke-dasharray="14 9"/>
+<text x="440" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Mobile App</text>
+<text x="440" y="209" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[Container: target]</text>
+<text x="440" y="237" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Not in prototype</text>
+<rect x="585.0" y="150" width="250" height="150" fill="#e9edf1" stroke="#42647e" stroke-width="2" stroke-dasharray="14 9"/>
+<text x="710" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">API Gateway</text>
+<text x="710" y="209" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[Container: target]</text>
+<text x="710" y="237" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Not in prototype</text>
+<rect x="855.0" y="150" width="250" height="150" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="980" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">REST Controller</text>
+<text x="980" y="209" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[Component: api.py]</text>
+<text x="980" y="237" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Parses; maps errors</text>
+<rect x="1125.0" y="150" width="250" height="150" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="1250" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Irrigation</text>
+<text x="1250" y="207" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Application Service</text>
+<text x="1250" y="234" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[irrigation_service.py]</text>
+<text x="1250" y="262" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Request lifecycle</text>
+<rect x="1395.0" y="150" width="250" height="150" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="1520" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Farm Access</text>
+<text x="1520" y="207" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Projection</text>
+<text x="1520" y="234" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[farm_projection.py]</text>
+<text x="1520" y="262" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Fresh farm grants</text>
+<rect x="1665.0" y="150" width="250" height="150" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="1790" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Repository</text>
+<text x="1790" y="209" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[Component: repository.py]</text>
+<text x="1790" y="237" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Stores requests</text>
+<rect x="1935.0" y="150" width="250" height="150" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
+<text x="2060" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Farm Owner</text>
+<text x="2060" y="209" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[Person]</text>
+<text x="2060" y="237" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Approves requests</text>
+<rect x="2205.0" y="150" width="250" height="150" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
+<text x="2330" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Farm Edge Gateway</text>
+<text x="2330" y="209" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[Container: edge]</text>
+<text x="2330" y="237" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Delivers schedules</text>
+<rect x="2475.0" y="150" width="250" height="150" fill="#eee8e3" stroke="#42647e" stroke-width="2"/>
+<text x="2600" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Irrigation</text>
+<text x="2600" y="207" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Controller</text>
+<text x="2600" y="234" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[External System]</text>
+<text x="2600" y="262" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Executes locally</text>
+<polyline points="170,440 436,440" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="420.0,448.8 436,440 420.0,431.2" fill="#486174"/>
+<rect x="143.6" y="408.0" width="322.8" height="28.0" fill="white"/>
+<text x="305.0" y="427" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">1. Enters paddock, start, minutes, mm</text>
+<polyline points="440,498 706,498" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="690.0,506.8 706,498 690.0,489.2" fill="#486174"/>
+<rect x="392.7" y="466.0" width="364.6" height="28.0" fill="white"/>
+<text x="575.0" y="485" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">2. POST /farms/farm-001/irrigation-requests</text>
+<polyline points="710,556 976,556" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="960.0,564.8 976,556 960.0,547.2" fill="#486174"/>
+<rect x="695.5" y="524.0" width="299.0" height="28.0" fill="white"/>
+<text x="845.0" y="543" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">3. Forwards request + bearer token</text>
+<polyline points="980,614 1246,614" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1230.0,622.8 1246,614 1230.0,605.2" fill="#486174"/>
+<rect x="975.6" y="582.0" width="278.9" height="28.0" fill="white"/>
+<text x="1115.0" y="601" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">4. create(principal, farmId, body)</text>
+<polyline points="1250,672 1516,672" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1500.0,680.8 1516,672 1500.0,663.2" fill="#486174"/>
+<rect x="1238.9" y="640.0" width="292.2" height="28.0" fill="white"/>
+<text x="1385.0" y="659" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">5. Owner/grant? Fresh within 60 s?</text>
+<polyline points="1520,730 1254,730" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="1270.0,721.2 1254,730 1270.0,738.8" fill="none" stroke="#486174" stroke-width="2"/>
+<rect x="1270.5" y="698.0" width="229.0" height="28.0" fill="white"/>
+<text x="1385.0" y="717" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">6. Allowed [else 404 / 503]</text>
+<polyline points="1250,778 1305,778 1305,806 1254,806" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1270.0,797.2 1254,806 1270.0,814.8" fill="#486174"/>
+<rect x="1309.0" y="778.0" width="447.1" height="28.0" fill="white"/>
+<text x="1316" y="797" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">7. Check safe limits: 1-240 min, 0.5-50 mm [else 422]</text>
+<polyline points="1250,868 1786,868" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1770.0,876.8 1786,868 1770.0,859.2" fill="#486174"/>
+<rect x="1430.9" y="836.0" width="178.2" height="28.0" fill="white"/>
+<text x="1520.0" y="855" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">8. Store as PENDING</text>
+<polyline points="1790,926 1254,926" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="1270.0,917.2 1254,926 1270.0,934.8" fill="none" stroke="#486174" stroke-width="2"/>
+<rect x="1434.4" y="894.0" width="171.1" height="28.0" fill="white"/>
+<text x="1520.0" y="913" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">9. irr-002, version 1</text>
+<polyline points="980,984 714,984" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="730.0,975.2 714,984 730.0,992.8" fill="none" stroke="#486174" stroke-width="2"/>
+<rect x="727.6" y="952.0" width="234.9" height="28.0" fill="white"/>
+<text x="845.0" y="971" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">10. 201 Created + Location</text>
+<polyline points="710,1042 444,1042" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="460.0,1033.2 444,1042 460.0,1050.8" fill="none" stroke="#486174" stroke-width="2"/>
+<rect x="430.7" y="1010.0" width="288.6" height="28.0" fill="white"/>
+<text x="575.0" y="1029" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">11. 201 Created (status PENDING)</text>
+<polyline points="440,1158 706,1158" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="690.0,1166.8 706,1158 690.0,1149.2" fill="#486174"/>
+<rect x="423.7" y="1126.0" width="302.5" height="28.0" fill="white"/>
+<text x="575.0" y="1145" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">12. PUT .../irr-002 (full replacement)</text>
+<polyline points="710,1216 976,1216" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="960.0,1224.8 976,1216 960.0,1207.2" fill="#486174"/>
+<rect x="719.2" y="1184.0" width="251.6" height="28.0" fill="white"/>
+<text x="845.0" y="1203" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">13. Forwards request + token</text>
+<polyline points="980,1274 1246,1274" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1230.0,1282.8 1246,1274 1230.0,1265.2" fill="#486174"/>
+<rect x="970.0" y="1242.0" width="290.0" height="28.0" fill="white"/>
+<text x="1115.0" y="1261" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">14. replace(): authorise + validate</text>
+<polyline points="1250,1332 1786,1332" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1770.0,1340.8 1786,1332 1770.0,1323.2" fill="#486174"/>
+<rect x="1366.1" y="1300.0" width="307.7" height="28.0" fill="white"/>
+<text x="1520.0" y="1319" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">15. Save only if PENDING (version 2)</text>
+<polyline points="980,1390 714,1390" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="730.0,1381.2 714,1390 730.0,1398.8" fill="none" stroke="#486174" stroke-width="2"/>
+<rect x="666.4" y="1358.0" width="357.2" height="28.0" fill="white"/>
+<text x="845.0" y="1377" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">16. 200 OK | 409 REQUEST_NOT_EDITABLE</text>
+<polyline points="710,1448 444,1448" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="460.0,1439.2 444,1448 460.0,1456.8" fill="none" stroke="#486174" stroke-width="2"/>
+<rect x="456.4" y="1416.0" width="237.3" height="28.0" fill="white"/>
+<text x="575.0" y="1435" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">17. Returns result to worker</text>
+<polyline points="2060,1586 1254,1586" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="1270.0,1577.2 1254,1586 1270.0,1594.8" fill="#9a6b12"/>
+<rect x="1507.5" y="1554.0" width="294.9" height="28.0" fill="white"/>
+<text x="1655.0" y="1573" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">18. Approves irr-002 [via Web App]</text>
+<polyline points="1250,1634 1305,1634 1305,1662 1254,1662" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="1270.0,1653.2 1254,1662 1270.0,1670.8" fill="#9a6b12"/>
+<rect x="1309.0" y="1634.0" width="255.8" height="28.0" fill="white"/>
+<text x="1316" y="1653" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">19. Re-check limits; set expiry</text>
+<polyline points="1250,1724 2326,1724" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="2310.0,1732.8 2326,1724 2310.0,1715.2" fill="#9a6b12"/>
+<rect x="1542.4" y="1692.0" width="495.2" height="28.0" fill="white"/>
+<text x="1790.0" y="1711" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">20. Dispatch approved schedule + expiry [via Event Broker]</text>
+<polyline points="2330,1782 2596,1782" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="2580.0,1790.8 2596,1782 2580.0,1773.2" fill="#9a6b12"/>
+<rect x="2344.5" y="1750.0" width="241.0" height="28.0" fill="white"/>
+<text x="2465.0" y="1769" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">21. Install; 48 h offline lease</text>
+<polyline points="2600,1830 2545,1830 2545,1858 2596,1858" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="2580.0,1866.8 2596,1858 2580.0,1849.2" fill="#9a6b12"/>
+<rect x="2200.0" y="1830.0" width="341.0" height="28.0" fill="white"/>
+<text x="2534" y="1849" text-anchor="end" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">22. Run within local limits; stop at expiry</text>
+<text x="40" y="2004" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-style="italic" fill="#183047">Safe state: after 48 hours without cloud contact the controller stops automatic watering and reverts to manual control.</text>
+<text x="40" y="2034" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-style="italic" fill="#183047">A disconnected controller cannot receive cloud cancellations; schedule expiry and local overrides are the safeguard (ADR-03).</text>
+<text x="40" y="2064" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-style="italic" fill="#183047">Prototype: Mobile App and API Gateway are not implemented. Postman calls the REST Controller directly at 127.0.0.1:8003, standing in for steps 1-3, 10-13 and 16-17.</text>
+<polyline points="40,2119 160,2119" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="144.0,2127.8 160,2119 144.0,2110.2" fill="#486174"/>
+<text x="175" y="2125" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Synchronous call</text>
+<polyline points="470,2119 590,2119" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="574.0,2127.8 590,2119 574.0,2110.2" fill="none" stroke="#486174" stroke-width="2"/>
+<text x="605" y="2125" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Return</text>
+<polyline points="820,2119 940,2119" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="924.0,2127.8 940,2119 924.0,2110.2" fill="#9a6b12"/>
+<text x="955" y="2125" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Planned interaction (not implemented)</text>
+<rect x="1440" y="2101" width="50" height="32" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="1505" y="2125" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Irrigation and Alerts component</text>
+<rect x="1880" y="2101" width="50" height="32" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
+<text x="1945" y="2125" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Person / other container</text>
+<rect x="2280" y="2101" width="50" height="32" fill="#e9edf1" stroke="#42647e" stroke-width="2" stroke-dasharray="14 9"/>
+<text x="2345" y="2125" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Target container (not in prototype)</text>
+</svg>

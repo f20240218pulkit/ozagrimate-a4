@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="2040" viewBox="0 0 2400 2040">
+<rect width="100%" height="100%" fill="white"/>
+<text x="40" y="77" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="32" font-weight="700" fill="#183047">OzAgriMate Farm Management - C4 Component Diagram</text>
+<text x="40" y="107" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Components inside the Farm Management container | solid = implemented module, dashed = proposed component</text>
+<rect x="120" y="150" width="540" height="170" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
+<text x="390.0" y="188" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Web App / Mobile App</text>
+<text x="390.0" y="214" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Container: client applications]</text>
+<text x="390.0" y="246" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Farm owners create and view farms.</text>
+<rect x="930" y="150" width="540" height="170" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
+<text x="1200.0" y="188" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">API Gateway</text>
+<text x="1200.0" y="214" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Container: managed HTTP gateway]</text>
+<text x="1200.0" y="246" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Routes /api/v1 requests; rate-limits</text>
+<text x="1200.0" y="272" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">and authenticates callers.</text>
+<rect x="1740" y="150" width="540" height="170" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
+<text x="2010.0" y="188" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Identity and Access</text>
+<text x="2010.0" y="214" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Container: managed OAuth identity]</text>
+<text x="2010.0" y="246" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Issues and verifies access tokens.</text>
+<rect x="60" y="390" width="2280" height="960" fill="#f7fafc" stroke="#9bb0c0" stroke-width="2"/>
+<text x="80" y="425" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Farm Management [Container: backend service] - services/farm_management/</text>
+<rect x="120" y="470" width="540" height="170" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="390.0" y="508" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">HTTP Server</text>
+<text x="390.0" y="534" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Component: app.py]</text>
+<text x="390.0" y="566" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Hosts local HTTP transport; wires</text>
+<text x="390.0" y="592" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">controller, service and repository.</text>
+<rect x="930" y="470" width="540" height="170" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="1200.0" y="508" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Farm REST Controller</text>
+<text x="1200.0" y="534" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Component: api.py]</text>
+<text x="1200.0" y="566" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Routes POST /farms and GET /farms/{id};</text>
+<text x="1200.0" y="592" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">maps errors to the JSON envelope.</text>
+<rect x="1740" y="470" width="540" height="170" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="2010.0" y="508" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Identity Adapter</text>
+<text x="2010.0" y="534" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Component: security.py]</text>
+<text x="2010.0" y="566" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Resolves the bearer token to a</text>
+<text x="2010.0" y="592" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">principal (demo fixtures locally).</text>
+<rect x="120" y="780" width="540" height="170" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="390.0" y="818" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Farm Domain Model / Validator</text>
+<text x="390.0" y="844" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Component: models.py]</text>
+<text x="390.0" y="876" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Defines farm types; validates name,</text>
+<text x="390.0" y="902" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">coordinates and area.</text>
+<rect x="930" y="780" width="540" height="170" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="1200.0" y="818" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Farm Application Service</text>
+<text x="1200.0" y="844" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Component: service.py]</text>
+<text x="1200.0" y="876" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Applies owner-only creation and</text>
+<text x="1200.0" y="902" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">farm-scoped retrieval rules.</text>
+<rect x="1740" y="780" width="540" height="170" fill="#d9ebfa" stroke="#42647e" stroke-width="2" stroke-dasharray="14 9"/>
+<text x="2010.0" y="818" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Farm Event Publisher (Outbox)</text>
+<text x="2010.0" y="844" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Component: proposed - not implemented]</text>
+<text x="2010.0" y="876" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Publishes versioned farm and grant</text>
+<text x="2010.0" y="902" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">events after each committed change.</text>
+<rect x="930" y="1090" width="540" height="170" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="1200.0" y="1128" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Farm Repository</text>
+<text x="1200.0" y="1154" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Component: repository.py]</text>
+<text x="1200.0" y="1186" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Creates farms; looks them up only</text>
+<text x="1200.0" y="1212" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">within the caller's owner scope.</text>
+<rect x="930" y="1430" width="540" height="170" fill="#e3f0df" stroke="#42647e" stroke-width="2"/>
+<text x="1200.0" y="1468" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Farm Store</text>
+<text x="1200.0" y="1494" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Container: managed database]</text>
+<text x="1200.0" y="1526" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Farm records and grants; owned</text>
+<text x="1200.0" y="1552" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">by Farm Management only.</text>
+<rect x="1740" y="1430" width="540" height="170" fill="#e3f0df" stroke="#42647e" stroke-width="2"/>
+<text x="2010.0" y="1468" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Event Broker</text>
+<text x="2010.0" y="1494" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Container: managed durable messaging]</text>
+<text x="2010.0" y="1526" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Durable, ordered-per-farm delivery</text>
+<text x="2010.0" y="1552" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">with replay for recovery.</text>
+<rect x="120" y="1430" width="540" height="170" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
+<text x="390.0" y="1468" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Irrigation and Alerts</text>
+<text x="390.0" y="1494" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Container: backend service]</text>
+<text x="390.0" y="1526" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Keeps its own read-only farm</text>
+<text x="390.0" y="1552" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">access projection (ADR-07).</text>
+<polyline points="660,235 930,235" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="914.0,243.8 930,235 914.0,226.2" fill="#486174"/>
+<rect x="729.5" y="202.0" width="131.0" height="52.0" fill="white"/>
+<text x="795.0" y="222" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">Uses</text>
+<text x="795.0" y="245" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[HTTPS/REST]</text>
+<polyline points="1200.0,320 1200.0,360 390.0,360 390.0,470" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="381.2,454.0 390.0,470 398.8,454.0" fill="#486174"/>
+<rect x="625.2" y="332.0" width="339.6" height="29.0" fill="white"/>
+<text x="795.0" y="352" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">Forwards /farms requests [JSON/HTTP]</text>
+<polyline points="660,555 930,555" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="914.0,563.8 930,555 914.0,546.2" fill="#486174"/>
+<rect x="741.0" y="522.0" width="108.0" height="52.0" fill="white"/>
+<text x="795.0" y="542" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">Dispatches</text>
+<text x="795.0" y="565" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">requests</text>
+<polyline points="1470,555 1740,555" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1724.0,563.8 1740,555 1724.0,546.2" fill="#486174"/>
+<rect x="1538.9" y="522.0" width="132.2" height="52.0" fill="white"/>
+<text x="1605.0" y="542" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">Authenticates</text>
+<text x="1605.0" y="565" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">caller</text>
+<polyline points="2010.0,470 2010.0,320" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="2018.8,336.0 2010.0,320 2001.2,336.0" fill="#486174"/>
+<rect x="1878.4" y="342.0" width="263.2" height="29.0" fill="white"/>
+<text x="2010.0" y="362" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">Validates tokens [production]</text>
+<polyline points="1200.0,640 1200.0,780" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1191.2,764.0 1200.0,780 1208.8,764.0" fill="#486174"/>
+<rect x="1108.7" y="672.0" width="182.6" height="29.0" fill="white"/>
+<text x="1200.0" y="692" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">Invokes create / get</text>
+<polyline points="930,865 660,865" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="676.0,856.2 660,865 676.0,873.8" fill="#486174"/>
+<rect x="749.3" y="832.0" width="91.4" height="52.0" fill="white"/>
+<text x="795.0" y="852" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">Validates</text>
+<text x="795.0" y="875" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">input</text>
+<polyline points="1470,865 1740,865" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="1724.0,873.8 1740,865 1724.0,856.2" fill="#486174"/>
+<rect x="1530.2" y="832.0" width="149.6" height="52.0" fill="white"/>
+<text x="1605.0" y="852" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">Records change</text>
+<text x="1605.0" y="875" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[proposed]</text>
+<polyline points="1200.0,950 1200.0,1090" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1191.2,1074.0 1200.0,1090 1208.8,1074.0" fill="#486174"/>
+<rect x="1095.5" y="982.0" width="208.9" height="29.0" fill="white"/>
+<text x="1200.0" y="1002" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">Scoped create / lookup</text>
+<polyline points="1200.0,1260 1200.0,1430" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1191.2,1414.0 1200.0,1430 1208.8,1414.0" fill="#486174"/>
+<rect x="1067.0" y="1302.0" width="266.0" height="52.0" fill="white"/>
+<text x="1200.0" y="1322" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">Reads / writes farm records</text>
+<text x="1200.0" y="1345" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[in-memory dict in prototype]</text>
+<polyline points="2010.0,950 2010.0,1430" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="2001.2,1414.0 2010.0,1430 2018.8,1414.0" fill="#486174"/>
+<rect x="1914.8" y="1140.0" width="190.4" height="52.0" fill="white"/>
+<text x="2010.0" y="1160" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">Publishes farm/grant</text>
+<text x="2010.0" y="1183" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">events [proposed]</text>
+<polyline points="2010.0,1600 2010.0,1650 390.0,1650 390.0,1600" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="398.8,1616.0 390.0,1600 381.2,1616.0" fill="#486174"/>
+<rect x="1029.9" y="1637.0" width="340.3" height="29.0" fill="white"/>
+<text x="1200.0" y="1657" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">Delivers farm/grant events [proposed]</text>
+<text x="60" y="1760" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="700" fill="#183047">Legend</text>
+<rect x="60" y="1780" width="60" height="36" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="135" y="1806" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Implemented component (Python module)</text>
+<rect x="630" y="1780" width="60" height="36" fill="#d9ebfa" stroke="#42647e" stroke-width="2" stroke-dasharray="14 9"/>
+<text x="705" y="1806" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Proposed component - not in the prototype</text>
+<rect x="1200" y="1780" width="60" height="36" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
+<text x="1275" y="1806" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Other container</text>
+<rect x="1770" y="1780" width="60" height="36" fill="#e3f0df" stroke="#42647e" stroke-width="2"/>
+<text x="1845" y="1806" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Data store or messaging container</text>
+<polyline points="60,1870 160,1870" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="144.0,1878.8 160,1870 144.0,1861.2" fill="#486174"/>
+<text x="175" y="1876" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Implemented call</text>
+<polyline points="630,1870 730,1870" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="714.0,1878.8 730,1870 714.0,1861.2" fill="#486174"/>
+<text x="745" y="1876" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Proposed / production-only interaction</text>
+<text x="60" y="1935" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-style="italic" fill="#183047">Prototype: one Python process at 127.0.0.1:8001 with demonstration identities; no broker, OAuth provider or database is deployed.</text>
+</svg>
