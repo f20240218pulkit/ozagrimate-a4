@@ -11,3 +11,4 @@ Thumbs.db
 ~$*
 evidence/Postman_Run_*.png
 evidence/Evidence_Record.json
+dist/
