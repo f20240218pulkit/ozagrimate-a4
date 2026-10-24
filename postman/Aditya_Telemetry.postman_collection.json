@@ -1,0 +1,667 @@
+{
+ "info": {
+  "name": "Aditya - OzAgriMate Telemetry",
+  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+  "description": "Run in order, one iteration, against a freshly started Telemetry service (python -m services.telemetry.app, port 8002). Seeded readings exist on farm-001 and farm-002. Tokens are local demonstration identities, not production authentication. No broker is deployed; accepted-reading events go to an in-memory outbox."
+ },
+ "variable": [
+  {
+   "key": "baseUrl",
+   "value": "http://127.0.0.1:8002"
+  },
+  {
+   "key": "firstReceivedAt",
+   "value": ""
+  }
+ ],
+ "item": [
+  {
+   "name": "01 Submit soil-moisture reading - gateway 001",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-gateway-001"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"schemaVersion\": 1,\n  \"readingId\": \"sm-north-01-20261023T2045Z\",\n  \"deviceId\": \"sm-north-01\",\n  \"paddockId\": \"north-paddock\",\n  \"metric\": \"soilMoisture\",\n  \"value\": 29.7,\n  \"unit\": \"%\",\n  \"observedAt\": \"2026-10-23T20:45:00Z\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 201\", function () { pm.response.to.have.status(201); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Reading stored as ACCEPTED with exact contract\", function () { const v=pm.response.json(); pm.expect(v).to.have.all.keys(\"readingId\",\"farmId\",\"deviceId\",\"paddockId\",\"metric\",\"value\",\"unit\",\"observedAt\",\"receivedAt\",\"status\",\"quarantineReasons\",\"schemaVersion\"); pm.expect(v.status).to.eql(\"ACCEPTED\"); pm.expect(v.quarantineReasons).to.eql([]); pm.expect(v.farmId).to.eql(\"farm-001\"); pm.expect(v.value).to.eql(29.7); pm.collectionVariables.set(\"firstReceivedAt\", v.receivedAt); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "02 Replay identical reading (edge buffer resend) - idempotent",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-gateway-001"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"schemaVersion\": 1,\n  \"readingId\": \"sm-north-01-20261023T2045Z\",\n  \"deviceId\": \"sm-north-01\",\n  \"paddockId\": \"north-paddock\",\n  \"metric\": \"soilMoisture\",\n  \"value\": 29.7,\n  \"unit\": \"%\",\n  \"observedAt\": \"2026-10-23T20:45:00Z\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Original record returned, no duplicate created\", function () { const v=pm.response.json(); pm.expect(v.readingId).to.eql(\"sm-north-01-20261023T2045Z\"); pm.expect(v.receivedAt).to.eql(pm.collectionVariables.get(\"firstReceivedAt\")); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "03 Reuse readingId with different value - 409",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-gateway-001"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"schemaVersion\": 1,\n  \"readingId\": \"sm-north-01-20261023T2045Z\",\n  \"deviceId\": \"sm-north-01\",\n  \"paddockId\": \"north-paddock\",\n  \"metric\": \"soilMoisture\",\n  \"value\": 28.0,\n  \"unit\": \"%\",\n  \"observedAt\": \"2026-10-23T20:45:00Z\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 409\", function () { pm.response.to.have.status(409); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code READING_ID_CONFLICT\", function () { pm.expect(pm.response.json().error.code).to.eql(\"READING_ID_CONFLICT\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "04 Submit spike reading - quarantined, not published",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-gateway-001"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"schemaVersion\": 1,\n  \"readingId\": \"sm-north-01-20261023T2100Z\",\n  \"deviceId\": \"sm-north-01\",\n  \"paddockId\": \"north-paddock\",\n  \"metric\": \"soilMoisture\",\n  \"value\": 88.0,\n  \"unit\": \"%\",\n  \"observedAt\": \"2026-10-23T21:00:00Z\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 201\", function () { pm.response.to.have.status(201); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Stored as QUARANTINED with reason\", function () { const v=pm.response.json(); pm.expect(v.status).to.eql(\"QUARANTINED\"); pm.expect(v.quarantineReasons).to.eql([\"SPIKE_DETECTED\"]); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "05 Owner tries to submit reading - 403",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"schemaVersion\": 1,\n  \"readingId\": \"owner-attempt\",\n  \"deviceId\": \"sm-north-01\",\n  \"paddockId\": \"north-paddock\",\n  \"metric\": \"soilMoisture\",\n  \"value\": 29.7,\n  \"unit\": \"%\",\n  \"observedAt\": \"2026-10-23T20:45:00Z\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 403\", function () { pm.response.to.have.status(403); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code FORBIDDEN\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FORBIDDEN\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "06 Gateway of another farm submits to farm-001 - 404",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-gateway-002"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"schemaVersion\": 1,\n  \"readingId\": \"foreign-attempt\",\n  \"deviceId\": \"sm-north-01\",\n  \"paddockId\": \"north-paddock\",\n  \"metric\": \"soilMoisture\",\n  \"value\": 29.7,\n  \"unit\": \"%\",\n  \"observedAt\": \"2026-10-23T20:45:00Z\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 404\", function () { pm.response.to.have.status(404); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code FARM_NOT_FOUND\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FARM_NOT_FOUND\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "07 Out-of-range value (101 %) - 422",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-gateway-001"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"schemaVersion\": 1,\n  \"readingId\": \"bad-range\",\n  \"deviceId\": \"sm-north-01\",\n  \"paddockId\": \"north-paddock\",\n  \"metric\": \"soilMoisture\",\n  \"value\": 101,\n  \"unit\": \"%\",\n  \"observedAt\": \"2026-10-23T20:45:00Z\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code VALIDATION_ERROR\", function () { pm.expect(pm.response.json().error.code).to.eql(\"VALIDATION_ERROR\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "08 Unit does not match metric - 422",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-gateway-001"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"schemaVersion\": 1,\n  \"readingId\": \"bad-unit\",\n  \"deviceId\": \"sm-north-01\",\n  \"paddockId\": \"north-paddock\",\n  \"metric\": \"soilMoisture\",\n  \"value\": 29.7,\n  \"unit\": \"percent\",\n  \"observedAt\": \"2026-10-23T20:45:00Z\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code VALIDATION_ERROR\", function () { pm.expect(pm.response.json().error.code).to.eql(\"VALIDATION_ERROR\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "09 Unsupported schemaVersion 2 - 422",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-gateway-001"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"schemaVersion\": 2,\n  \"readingId\": \"bad-version\",\n  \"deviceId\": \"sm-north-01\",\n  \"paddockId\": \"north-paddock\",\n  \"metric\": \"soilMoisture\",\n  \"value\": 29.7,\n  \"unit\": \"%\",\n  \"observedAt\": \"2026-10-23T20:45:00Z\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code UNSUPPORTED_SCHEMA_VERSION\", function () { pm.expect(pm.response.json().error.code).to.eql(\"UNSUPPORTED_SCHEMA_VERSION\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "10 Missing bearer token - 401",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"schemaVersion\": 1,\n  \"readingId\": \"sm-north-01-20261023T2045Z\",\n  \"deviceId\": \"sm-north-01\",\n  \"paddockId\": \"north-paddock\",\n  \"metric\": \"soilMoisture\",\n  \"value\": 29.7,\n  \"unit\": \"%\",\n  \"observedAt\": \"2026-10-23T20:45:00Z\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 401\", function () { pm.response.to.have.status(401); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code UNAUTHENTICATED\", function () { pm.expect(pm.response.json().error.code).to.eql(\"UNAUTHENTICATED\"); });",
+       "pm.test(\"WWW-Authenticate header\", function () { pm.expect(pm.response.headers.get(\"WWW-Authenticate\")).to.eql(\"Bearer\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "11 Wrong media type - 415",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "text/plain"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-gateway-001"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry",
+    "body": {
+     "mode": "raw",
+     "raw": "soilMoisture=29.7",
+     "options": {
+      "raw": {
+       "language": "text"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 415\", function () { pm.response.to.have.status(415); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code UNSUPPORTED_MEDIA_TYPE\", function () { pm.expect(pm.response.json().error.code).to.eql(\"UNSUPPORTED_MEDIA_TYPE\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "12 Malformed JSON - 400",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-gateway-001"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry",
+    "body": {
+     "mode": "raw",
+     "raw": "{\"readingId\": ",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 400\", function () { pm.response.to.have.status(400); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code INVALID_JSON\", function () { pm.expect(pm.response.json().error.code).to.eql(\"INVALID_JSON\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "13 Owner lists soil-moisture readings for one device",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry?metric=soilMoisture&deviceId=sm-north-01"
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Three seeded + one new accepted reading, in time order\", function () { const v=pm.response.json(); pm.expect(v).to.have.all.keys(\"farmId\",\"count\",\"hasMore\",\"readings\"); pm.expect(v.count).to.eql(4); pm.expect(v.hasMore).to.eql(false); pm.expect(v.readings.map(r=>r.value)).to.eql([31.2,30.8,30.1,29.7]); pm.expect(v.readings.every(r=>r.status===\"ACCEPTED\")).to.eql(true); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "14 Owner lists quarantined readings",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry?status=QUARANTINED"
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Only the spike reading is quarantined\", function () { const v=pm.response.json(); pm.expect(v.count).to.eql(1); pm.expect(v.readings[0].readingId).to.eql(\"sm-north-01-20261023T2100Z\"); pm.expect(v.readings[0].quarantineReasons).to.eql([\"SPIKE_DETECTED\"]); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "15 Granted worker reads a time window",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-worker-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry?from=2026-10-23T20:10:00Z&to=2026-10-23T20:35:00Z&limit=2"
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Window and limit applied\", function () { const v=pm.response.json(); pm.expect(v.count).to.eql(2); pm.expect(v.hasMore).to.eql(true); pm.expect(v.readings.every(r=>r.observedAt>=\"2026-10-23T20:10:00Z\" && r.observedAt<=\"2026-10-23T20:35:00Z\")).to.eql(true); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "16 Another owner reads farm-001 - 404",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-b"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry"
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 404\", function () { pm.response.to.have.status(404); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code FARM_NOT_FOUND\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FARM_NOT_FOUND\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "17 Edge gateway tries to read - 403",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-gateway-001"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry"
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 403\", function () { pm.response.to.have.status(403); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code FORBIDDEN\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FORBIDDEN\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "18 Invalid query parameter (limit=0) - 422",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry?limit=0"
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code VALIDATION_ERROR\", function () { pm.expect(pm.response.json().error.code).to.eql(\"VALIDATION_ERROR\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "19 Unsupported method DELETE - 405",
+   "request": {
+    "method": "DELETE",
+    "header": [
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/telemetry"
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 405\", function () { pm.response.to.have.status(405); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code METHOD_NOT_ALLOWED\", function () { pm.expect(pm.response.json().error.code).to.eql(\"METHOD_NOT_ALLOWED\"); });",
+       "pm.test(\"Allow header lists GET, POST\", function () { pm.expect(pm.response.headers.get(\"Allow\")).to.eql(\"GET, POST\"); });"
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,139 @@
+newman
+
+Aditya - OzAgriMate Telemetry
+
+→ 01 Submit soil-moisture reading - gateway 001
+  POST http://127.0.0.1:8002/farms/farm-001/telemetry [201 Created, 510B, 26ms]
+  ✓  HTTP 201
+  ✓  JSON response
+  ✓  Reading stored as ACCEPTED with exact contract
+
+→ 02 Replay identical reading (edge buffer resend) - idempotent
+  POST http://127.0.0.1:8002/farms/farm-001/telemetry [200 OK, 505B, 4ms]
+  ✓  HTTP 200
+  ✓  JSON response
+  ✓  Original record returned, no duplicate created
+
+→ 03 Reuse readingId with different value - 409
+  POST http://127.0.0.1:8002/farms/farm-001/telemetry [409 Conflict, 328B, 3ms]
+  ✓  HTTP 409
+  ✓  JSON response
+  ✓  Error code READING_ID_CONFLICT
+
+→ 04 Submit spike reading - quarantined, not published
+  POST http://127.0.0.1:8002/farms/farm-001/telemetry [201 Created, 529B, 3ms]
+  ✓  HTTP 201
+  ✓  JSON response
+  ✓  Stored as QUARANTINED with reason
+
+→ 05 Owner tries to submit reading - 403
+  POST http://127.0.0.1:8002/farms/farm-001/telemetry [403 Forbidden, 290B, 3ms]
+  ✓  HTTP 403
+  ✓  JSON response
+  ✓  Error code FORBIDDEN
+
+→ 06 Gateway of another farm submits to farm-001 - 404
+  POST http://127.0.0.1:8002/farms/farm-001/telemetry [404 Not Found, 277B, 10ms]
+  ✓  HTTP 404
+  ✓  JSON response
+  ✓  Error code FARM_NOT_FOUND
+
+→ 07 Out-of-range value (101 %) - 422
+  POST http://127.0.0.1:8002/farms/farm-001/telemetry [422 Unprocessable Content, 309B, 2ms]
+  ✓  HTTP 422
+  ✓  JSON response
+  ✓  Error code VALIDATION_ERROR
+
+→ 08 Unit does not match metric - 422
+  POST http://127.0.0.1:8002/farms/farm-001/telemetry [422 Unprocessable Content, 295B, 3ms]
+  ✓  HTTP 422
+  ✓  JSON response
+  ✓  Error code VALIDATION_ERROR
+
+→ 09 Unsupported schemaVersion 2 - 422
+  POST http://127.0.0.1:8002/farms/farm-001/telemetry [422 Unprocessable Content, 292B, 3ms]
+  ✓  HTTP 422
+  ✓  JSON response
+  ✓  Error code UNSUPPORTED_SCHEMA_VERSION
+
+→ 10 Missing bearer token - 401
+  POST http://127.0.0.1:8002/farms/farm-001/telemetry [401 Unauthorized, 328B, 3ms]
+  ✓  HTTP 401
+  ✓  JSON response
+  ✓  Error code UNAUTHENTICATED
+  ✓  WWW-Authenticate header
+
+→ 11 Wrong media type - 415
+  POST http://127.0.0.1:8002/farms/farm-001/telemetry [415 Unsupported Media Type, 286B, 5ms]
+  ✓  HTTP 415
+  ✓  JSON response
+  ✓  Error code UNSUPPORTED_MEDIA_TYPE
+
+→ 12 Malformed JSON - 400
+  POST http://127.0.0.1:8002/farms/farm-001/telemetry [400 Bad Request, 282B, 2ms]
+  ✓  HTTP 400
+  ✓  JSON response
+  ✓  Error code INVALID_JSON
+
+→ 13 Owner lists soil-moisture readings for one device
+  GET http://127.0.0.1:8002/farms/farm-001/telemetry?metric=soilMoisture&deviceId=sm-north-01 [200 OK, 1.54kB, 3ms]
+  ✓  HTTP 200
+  ✓  JSON response
+  ✓  Three seeded + one new accepted reading, in time order
+
+→ 14 Owner lists quarantined readings
+  GET http://127.0.0.1:8002/farms/farm-001/telemetry?status=QUARANTINED [200 OK, 592B, 2ms]
+  ✓  HTTP 200
+  ✓  JSON response
+  ✓  Only the spike reading is quarantined
+
+→ 15 Granted worker reads a time window
+  GET http://127.0.0.1:8002/farms/farm-001/telemetry?from=2026-10-23T20:10:00Z&to=2026-10-23T20:35:00Z&limit=2 [200 OK, 893B, 3ms]
+  ✓  HTTP 200
+  ✓  JSON response
+  ✓  Window and limit applied
+
+→ 16 Another owner reads farm-001 - 404
+  GET http://127.0.0.1:8002/farms/farm-001/telemetry [404 Not Found, 277B, 3ms]
+  ✓  HTTP 404
+  ✓  JSON response
+  ✓  Error code FARM_NOT_FOUND
+
+→ 17 Edge gateway tries to read - 403
+  GET http://127.0.0.1:8002/farms/farm-001/telemetry [403 Forbidden, 278B, 2ms]
+  ✓  HTTP 403
+  ✓  JSON response
+  ✓  Error code FORBIDDEN
+
+→ 18 Invalid query parameter (limit=0) - 422
+  GET http://127.0.0.1:8002/farms/farm-001/telemetry?limit=0 [422 Unprocessable Content, 301B, 2ms]
+  ✓  HTTP 422
+  ✓  JSON response
+  ✓  Error code VALIDATION_ERROR
+
+→ 19 Unsupported method DELETE - 405
+  DELETE http://127.0.0.1:8002/farms/farm-001/telemetry [405 Method Not Allowed, 294B, 2ms]
+  ✓  HTTP 405
+  ✓  JSON response
+  ✓  Error code METHOD_NOT_ALLOWED
+  ✓  Allow header lists GET, POST
+
+┌─────────────────────────┬─────────────────┬─────────────────┐
+│                         │        executed │          failed │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              iterations │               1 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│                requests │              19 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│            test-scripts │              19 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│      prerequest-scripts │               0 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              assertions │              59 │               0 │
+├─────────────────────────┴─────────────────┴─────────────────┤
+│ total run duration: 393ms                                   │
+├─────────────────────────────────────────────────────────────┤
+│ total data received: 4.66kB (approx)                        │
+├─────────────────────────────────────────────────────────────┤
+│ average response time: 4ms [min: 2ms, max: 26ms, s.d.: 5ms] │
+└─────────────────────────────────────────────────────────────┘
