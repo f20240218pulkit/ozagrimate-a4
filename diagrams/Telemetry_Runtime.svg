@@ -1,172 +1,181 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2790" height="2121" viewBox="0 0 2790 2121" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo5ZjQ0NThkMC03MWRkLTRjNjktOWQ3Ny0zNGRmMTkwNmM3OTgAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaEEEONJhftOXojPg1gffutQAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDpmN2NlNzQzZS05ZDk4LTQ1OGYtYjlkZS01MzJjNmI1YjVmMWVscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNo1UpT8ax0NJVd7F/8GghkcQAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFgg9IvH0a55JDwX+ChDceYYp9xh6dHKmxl5L+MPxOKhZqqkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaEsK621Pfj3qg1I51DD71j4AAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCCwLiLETcqVNI88x4grROa0EP/hlYEhrjw4fdSdX/KEi2RuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBiaZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjlmNDQ1OGQwLTcxZGQtNGM2OS05ZDc3LTM0ZGYxOTA2Yzc5OC9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjc5N2I3MTM1LTc1Y2YtNDRjNS04MmQ3LWFkM2YwYmE3OTk2MnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCD0i8fRrnkkPBf4KENx5hin3GHp0cqbGXkv4w/E4qFmqqJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFgggngbJH5pgROLkNpEbpGVwRdZBmbuVFN46UDeBTw20raiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggsU0H0Y+mSQ0mgy0lMcwa6pJqI/HjQoOghWCBiivgHq50Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQH9i9EXcKImSJy7gEaoqWs7kig+4GiaEjQf1iUB5bdok3mXUpOFC4h52+/ctgbkb3RxT1YJoYru492pzgNOMCJA=</c2pa:manifest></metadata>
+<svg xmlns="http://www.w3.org/2000/svg" width="2925" height="2448" viewBox="0 0 2925 2448" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo3ODFiN2IxYy1lMTljLTRlZDctYmU3Yy04YzMwZGJmNmQwODgAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaENkDyBz83cTzVIdooy+SCkAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo0ODVlMjg0ZS0zNTQzLTRlNmItYjZkMi1iZWZmNmVkOTdlZTVscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoBp3UforTalhxzuMcfzw0tQAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggZnmQH8Ml1iIh3NN4bzlaKJ1C1eZPvbaExYg5wK2W56akZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaGzNju7r5N7gaPn3CkO8/SoAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCC5zH9ZM9mVwYY1hqRosLBRM1x82jjLavUCHzfesFh3TmRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBiaZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjc4MWI3YjFjLWUxOWMtNGVkNy1iZTdjLThjMzBkYmY2ZDA4OC9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjUzN2NjNWNlLWExZDEtNDE3OC1iNDkwLTJlOGVhNDJkMmQyNHJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCBmeZAfwyXWIiHc03hvOVoonULV5k+9toTFiDnArZbnpqJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFgg3Vb76rTJ2054NOJfJuK0sM8HevWQb37F7k1No6A4/YuiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggPsY9vi1KE8xjgEmxgX8nMC8Ii7un0D3KSwfSa9dCeXV0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQK3H5TlBczDC3fMW0LdG9zdWUR5vNrRSSl0iKcdQvnMCD6cmu75kGpenNq5xQFipV9iQSrm3pEo3axLyhki8Al8=</c2pa:manifest></metadata>
 <rect width="100%" height="100%" fill="white"/>
-<text x="40" y="77" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="32" font-weight="700" fill="#183047">OzAgriMate Runtime Diagram 1 - Telemetry submission and processing (UML sequence)</text>
-<text x="40" y="107" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Telemetry container | prototype implements steps 4-16 and the idempotent replay (19-20); dashed Farm Edge Gateway and Event Broker are target architecture; amber steps are planned</text>
-<rect x="40" y="370" width="2710" height="984" fill="#f7fafc" stroke="#9bb0c0" stroke-width="2"/>
-<text x="56" y="400" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="700" fill="#183047">Submit - implemented: POST /farms/{farmId}/telemetry</text>
-<rect x="40" y="1378" width="2710" height="230" fill="#f7fafc" stroke="#9bb0c0" stroke-width="2"/>
-<text x="56" y="1408" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="700" fill="#183047">alt [uplink outage] - edge buffering planned; idempotent replay implemented</text>
-<rect x="40" y="1632" width="2710" height="230" fill="#fbf5e6" stroke="#b08a3c" stroke-width="2" stroke-dasharray="14 9"/>
-<text x="56" y="1662" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="700" fill="#7a5a17">async, PLANNED - broker relay and consumption; the prototype keeps an in-memory outbox</text>
-<polyline points="170,300 170,1896" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
-<polyline points="440,300 440,1896" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
-<polyline points="710,300 710,1896" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
-<polyline points="980,300 980,1896" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
-<polyline points="1250,300 1250,1896" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
-<polyline points="1520,300 1520,1896" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
-<polyline points="1790,300 1790,1896" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
-<polyline points="2060,300 2060,1896" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
-<polyline points="2330,300 2330,1896" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
-<polyline points="2600,300 2600,1896" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
-<rect x="45.0" y="150" width="250" height="150" fill="#eee8e3" stroke="#42647e" stroke-width="2"/>
-<text x="170" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Soil Moisture</text>
-<text x="170" y="207" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Sensor</text>
-<text x="170" y="234" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[External System]</text>
-<text x="170" y="262" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Measures conditions</text>
-<rect x="315.0" y="150" width="250" height="150" fill="#e9edf1" stroke="#42647e" stroke-width="2" stroke-dasharray="14 9"/>
-<text x="440" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Farm Edge Gateway</text>
-<text x="440" y="209" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[Container: target]</text>
-<text x="440" y="237" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Not in prototype</text>
-<rect x="585.0" y="150" width="250" height="150" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
-<text x="710" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">REST Controller</text>
-<text x="710" y="209" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[Component: api.py]</text>
-<text x="710" y="237" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Routes; maps errors</text>
-<rect x="855.0" y="150" width="250" height="150" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
-<text x="980" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Telemetry</text>
-<text x="980" y="207" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Ingestion Service</text>
-<text x="980" y="234" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[ingestion_service.py]</text>
-<text x="980" y="262" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Ingestion use case</text>
-<rect x="1125.0" y="150" width="250" height="150" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
-<text x="1250" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Farm Access</text>
-<text x="1250" y="207" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Read Model</text>
-<text x="1250" y="234" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[farm_access.py]</text>
-<text x="1250" y="262" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Gateway bindings</text>
-<rect x="1395.0" y="150" width="250" height="150" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
-<text x="1520" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Anomaly Detector</text>
-<text x="1520" y="209" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[anomaly_detector.py]</text>
-<text x="1520" y="237" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Accept or quarantine</text>
-<rect x="1665.0" y="150" width="250" height="150" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
-<text x="1790" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Repository</text>
-<text x="1790" y="209" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[Component: repository.py]</text>
-<text x="1790" y="237" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Per-farm readings</text>
-<rect x="1935.0" y="150" width="250" height="150" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
-<text x="2060" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Accepted Reading</text>
-<text x="2060" y="207" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Publisher</text>
-<text x="2060" y="234" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[event_publisher.py]</text>
-<text x="2060" y="262" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Outbox</text>
-<rect x="2205.0" y="150" width="250" height="150" fill="#e9edf1" stroke="#42647e" stroke-width="2" stroke-dasharray="14 9"/>
-<text x="2330" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Event Broker</text>
-<text x="2330" y="209" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[Container: target]</text>
-<text x="2330" y="237" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Not in prototype</text>
-<rect x="2475.0" y="150" width="250" height="150" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
-<text x="2600" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">Irrigation</text>
-<text x="2600" y="207" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#183047">and Alerts</text>
-<text x="2600" y="234" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="400" fill="#183047">[Container]</text>
-<text x="2600" y="262" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-style="italic" fill="#183047">Consumes events</text>
-<polyline points="170,440 436,440" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
-<polygon points="420.0,448.8 436,440 420.0,431.2" fill="#9a6b12"/>
-<rect x="143.7" y="408.0" width="322.6" height="28.0" fill="white"/>
-<text x="305.0" y="427" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">1. Soil moisture 29.7 % [field protocol]</text>
-<polyline points="440,488 495,488 495,516 444,516" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
-<polygon points="460.0,507.2 444,516 460.0,524.8" fill="#9a6b12"/>
-<rect x="499.0" y="488.0" width="371.0" height="28.0" fill="white"/>
-<text x="506" y="507" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">2. Normalise to schema v1; assign readingId</text>
-<polyline points="440,578 706,578" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
-<polygon points="690.0,586.8 706,578 690.0,569.2" fill="#9a6b12"/>
-<rect x="356.3" y="546.0" width="437.3" height="28.0" fill="white"/>
-<text x="575.0" y="565" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">3. POST /farms/farm-001/telemetry + gateway token</text>
-<polyline points="710,636 976,636" fill="none" stroke="#486174" stroke-width="2"/>
-<polygon points="960.0,644.8 976,636 960.0,627.2" fill="#486174"/>
-<rect x="703.5" y="604.0" width="283.0" height="28.0" fill="white"/>
-<text x="845.0" y="623" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">4. submit(principal, farmId, body)</text>
-<polyline points="980,694 1246,694" fill="none" stroke="#486174" stroke-width="2"/>
-<polygon points="1230.0,702.8 1246,694 1230.0,685.2" fill="#486174"/>
-<rect x="983.2" y="662.0" width="263.7" height="28.0" fill="white"/>
-<text x="1115.0" y="681" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">5. Gateway registered to farm?</text>
-<polyline points="1250,752 984,752" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
-<polyline points="1000.0,743.2 984,752 1000.0,760.8" fill="none" stroke="#486174" stroke-width="2"/>
-<rect x="1019.0" y="720.0" width="192.1" height="28.0" fill="white"/>
-<text x="1115.0" y="739" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">6. Yes [else 403 / 404]</text>
-<polyline points="980,800 1035,800 1035,828 984,828" fill="none" stroke="#486174" stroke-width="2"/>
-<polygon points="1000.0,819.2 984,828 1000.0,836.8" fill="#486174"/>
-<rect x="1039.0" y="800.0" width="360.7" height="28.0" fill="white"/>
-<text x="1046" y="819" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">7. Validate unit, range, UTC time [else 422]</text>
-<polyline points="980,890 1786,890" fill="none" stroke="#486174" stroke-width="2"/>
-<polygon points="1770.0,898.8 1786,890 1770.0,881.2" fill="#486174"/>
-<rect x="1218.4" y="858.0" width="333.2" height="28.0" fill="white"/>
-<text x="1385.0" y="877" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">8. find(farmId, readingId) - replay check</text>
-<polyline points="1790,948 984,948" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
-<polyline points="1000.0,939.2 984,948 1000.0,956.8" fill="none" stroke="#486174" stroke-width="2"/>
-<rect x="1214.9" y="916.0" width="340.2" height="28.0" fill="white"/>
-<text x="1385.0" y="935" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">9. Not found [same: 200 | different: 409]</text>
-<polyline points="980,1006 1516,1006" fill="none" stroke="#486174" stroke-width="2"/>
-<polygon points="1500.0,1014.8 1516,1006 1500.0,997.2" fill="#486174"/>
-<rect x="1161.6" y="974.0" width="176.9" height="28.0" fill="white"/>
-<text x="1250.0" y="993" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">10. classify(reading)</text>
-<polyline points="1520,1064 1786,1064" fill="none" stroke="#486174" stroke-width="2"/>
-<polygon points="1770.0,1072.8 1786,1064 1770.0,1055.2" fill="#486174"/>
-<rect x="1492.7" y="1032.0" width="324.6" height="28.0" fill="white"/>
-<text x="1655.0" y="1051" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">11. Last accepted value for this device</text>
-<polyline points="1520,1122 984,1122" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
-<polyline points="1000.0,1113.2 984,1122 1000.0,1130.8" fill="none" stroke="#486174" stroke-width="2"/>
-<rect x="1075.6" y="1090.0" width="348.8" height="28.0" fill="white"/>
-<text x="1250.0" y="1109" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">12. ACCEPTED | QUARANTINED + reasons</text>
-<polyline points="980,1180 1786,1180" fill="none" stroke="#486174" stroke-width="2"/>
-<polygon points="1770.0,1188.8 1786,1180 1770.0,1171.2" fill="#486174"/>
-<rect x="1261.9" y="1148.0" width="246.1" height="28.0" fill="white"/>
-<text x="1385.0" y="1167" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">13. Store reading with status</text>
-<polyline points="980,1238 2056,1238" fill="none" stroke="#486174" stroke-width="2"/>
-<polygon points="2040.0,1246.8 2056,1238 2040.0,1229.2" fill="#486174"/>
-<rect x="1362.2" y="1206.0" width="315.6" height="28.0" fill="white"/>
-<text x="1520.0" y="1225" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">14. publish(reading) - ACCEPTED only</text>
-<polyline points="980,1296 714,1296" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
-<polyline points="730.0,1287.2 714,1296 730.0,1304.8" fill="none" stroke="#486174" stroke-width="2"/>
-<rect x="763.5" y="1264.0" width="162.9" height="28.0" fill="white"/>
-<text x="845.0" y="1283" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">15. Stored reading</text>
-<polyline points="710,1354 444,1354" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
-<polyline points="460.0,1345.2 444,1354 460.0,1362.8" fill="none" stroke="#486174" stroke-width="2"/>
-<rect x="433.5" y="1322.0" width="283.1" height="28.0" fill="white"/>
-<text x="575.0" y="1341" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">16. 201 Created (status, reasons)</text>
-<polyline points="440,1438 495,1438 495,1466 444,1466" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
-<polygon points="460.0,1457.2 444,1466 460.0,1474.8" fill="#9a6b12"/>
-<rect x="499.0" y="1438.0" width="344.4" height="28.0" fill="white"/>
-<text x="506" y="1457" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">17. Hold readings up to 72 h while offline</text>
-<polyline points="440,1528 706,1528" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
-<polygon points="690.0,1536.8 706,1528 690.0,1519.2" fill="#9a6b12"/>
-<rect x="394.7" y="1496.0" width="360.7" height="28.0" fill="white"/>
-<text x="575.0" y="1515" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">18. Resend same readingId after reconnect</text>
-<polyline points="710,1586 444,1586" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
-<polyline points="460.0,1577.2 444,1586 460.0,1594.8" fill="none" stroke="#486174" stroke-width="2"/>
-<rect x="387.4" y="1554.0" width="375.3" height="28.0" fill="white"/>
-<text x="575.0" y="1573" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">19-20. 200 OK: original record; no new event</text>
-<polyline points="2060,1702 2326,1702" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
-<polygon points="2310.0,1710.8 2326,1702 2310.0,1693.2" fill="#9a6b12"/>
-<rect x="2021.4" y="1670.0" width="347.2" height="28.0" fill="white"/>
-<text x="2195.0" y="1689" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">21. Relay ReadingAccepted, key = farmId</text>
-<polyline points="2330,1760 2596,1760" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
-<polygon points="2580.0,1768.8 2596,1760 2580.0,1751.2" fill="#9a6b12"/>
-<rect x="2359.9" y="1728.0" width="210.2" height="28.0" fill="white"/>
-<text x="2465.0" y="1747" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">22. Deliver at least once</text>
-<polyline points="2600,1808 2545,1808 2545,1836 2596,1836" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
-<polygon points="2580.0,1844.8 2596,1836 2580.0,1827.2" fill="#9a6b12"/>
-<rect x="2186.9" y="1808.0" width="354.1" height="28.0" fill="white"/>
-<text x="2534" y="1827" text-anchor="end" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">23. Skip seen eventId; evaluate alert rules</text>
-<text x="40" y="1946" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-style="italic" fill="#183047">Quarantined readings (step 12) are stored with reason codes but never published, so they cannot trigger irrigation or alerts (ASR5).</text>
-<text x="40" y="1976" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-style="italic" fill="#183047">The gateway receives 201 once the reading is stored; downstream processing is asynchronous and scales separately (ADR-02).</text>
-<text x="40" y="2006" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-style="italic" fill="#183047">Prototype: no edge gateway or broker. Postman calls the REST Controller directly at 127.0.0.1:8002, standing in for steps 3, 16, 18 and 19-20.</text>
-<polyline points="40,2061 160,2061" fill="none" stroke="#486174" stroke-width="2"/>
-<polygon points="144.0,2069.8 160,2061 144.0,2052.2" fill="#486174"/>
-<text x="175" y="2067" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Synchronous call</text>
-<polyline points="470,2061 590,2061" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
-<polyline points="574.0,2069.8 590,2061 574.0,2052.2" fill="none" stroke="#486174" stroke-width="2"/>
-<text x="605" y="2067" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Return</text>
-<polyline points="820,2061 940,2061" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
-<polygon points="924.0,2069.8 940,2061 924.0,2052.2" fill="#9a6b12"/>
-<text x="955" y="2067" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Planned interaction (not implemented)</text>
-<rect x="1440" y="2043" width="50" height="32" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
-<text x="1505" y="2067" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Telemetry component</text>
-<rect x="1880" y="2043" width="50" height="32" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
-<text x="1945" y="2067" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Person / other container</text>
-<rect x="2280" y="2043" width="50" height="32" fill="#e9edf1" stroke="#42647e" stroke-width="2" stroke-dasharray="14 9"/>
-<text x="2345" y="2067" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Target container (not in prototype)</text>
+<text x="40" y="77" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="36" font-weight="700" fill="#183047">OzAgriMate Runtime Diagram 1 - Telemetry submission and processing (UML sequence)</text>
+<text x="40" y="110" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="400" fill="#183047">Telemetry container | prototype implements steps 4-16 and the idempotent replay (19-21); dashed boxes are target containers; amber steps are planned</text>
+<rect x="40" y="380" width="2845" height="1094" fill="#f7fafc" stroke="#9bb0c0" stroke-width="2"/>
+<text x="56" y="412" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Submit - implemented: POST /farms/{farmId}/telemetry</text>
+<rect x="40" y="1498" width="2845" height="390" fill="#f7fafc" stroke="#9bb0c0" stroke-width="2"/>
+<text x="56" y="1530" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">opt [uplink outage] - edge buffering planned; idempotent replay implemented</text>
+<rect x="40" y="1912" width="2845" height="262" fill="#fbf5e6" stroke="#b08a3c" stroke-width="2" stroke-dasharray="14 9"/>
+<text x="56" y="1944" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#7a5a17">async, PLANNED - broker relay and consumption; the prototype keeps an in-memory outbox</text>
+<polyline points="170,310 170,2208" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="455,310 455,2208" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="740,310 740,2208" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="1025,310 1025,2208" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="1310,310 1310,2208" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="1595,310 1595,2208" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="1880,310 1880,2208" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="2165,310 2165,2208" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="2450,310 2450,2208" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="2735,310 2735,2208" fill="none" stroke="#9bb0c0" stroke-width="2" stroke-dasharray="14 9"/>
+<rect x="36.0" y="150" width="268" height="160" fill="#eee8e3" stroke="#42647e" stroke-width="2"/>
+<text x="170" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Soil Moisture</text>
+<text x="170" y="209" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Sensor</text>
+<text x="170" y="238" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[External System]</text>
+<text x="170" y="266" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-style="italic" fill="#183047">Measures conditions</text>
+<rect x="321.0" y="150" width="268" height="160" fill="#e9edf1" stroke="#42647e" stroke-width="2" stroke-dasharray="14 9"/>
+<text x="455" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Farm Edge</text>
+<text x="455" y="209" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Gateway</text>
+<text x="455" y="238" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Container: target]</text>
+<text x="455" y="266" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-style="italic" fill="#183047">Not in prototype</text>
+<rect x="606.0" y="150" width="268" height="160" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="740" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">REST Controller</text>
+<text x="740" y="211" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Component: api.py]</text>
+<text x="740" y="239" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-style="italic" fill="#183047">Routes; maps errors</text>
+<rect x="891.0" y="150" width="268" height="160" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="1025" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Telemetry</text>
+<text x="1025" y="209" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Ingestion Service</text>
+<text x="1025" y="238" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[ingestion_service.py]</text>
+<text x="1025" y="266" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-style="italic" fill="#183047">Ingestion use case</text>
+<rect x="1176.0" y="150" width="268" height="160" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="1310" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Farm Access</text>
+<text x="1310" y="209" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Read Model</text>
+<text x="1310" y="238" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[farm_access.py]</text>
+<text x="1310" y="266" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-style="italic" fill="#183047">Gateway bindings</text>
+<rect x="1461.0" y="150" width="268" height="160" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="1595" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Anomaly Detector</text>
+<text x="1595" y="211" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[anomaly_detector.py]</text>
+<text x="1595" y="239" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-style="italic" fill="#183047">Accept or quarantine</text>
+<rect x="1746.0" y="150" width="268" height="160" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="1880" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Repository</text>
+<text x="1880" y="211" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Component: repository.py]</text>
+<text x="1880" y="239" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-style="italic" fill="#183047">Per-farm readings</text>
+<rect x="2031.0" y="150" width="268" height="160" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="2165" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Accepted Reading</text>
+<text x="2165" y="209" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Publisher</text>
+<text x="2165" y="238" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[event_publisher.py]</text>
+<text x="2165" y="266" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-style="italic" fill="#183047">Outbox</text>
+<rect x="2316.0" y="150" width="268" height="160" fill="#e9edf1" stroke="#42647e" stroke-width="2" stroke-dasharray="14 9"/>
+<text x="2450" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Event Broker</text>
+<text x="2450" y="211" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Container: target]</text>
+<text x="2450" y="239" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-style="italic" fill="#183047">Not in prototype</text>
+<rect x="2601.0" y="150" width="268" height="160" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
+<text x="2735" y="182" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Irrigation</text>
+<text x="2735" y="209" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">and Alerts</text>
+<text x="2735" y="238" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Container]</text>
+<text x="2735" y="266" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-style="italic" fill="#183047">Consumes events</text>
+<polyline points="170,464 451,464" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="435.0,472.8 451,464 435.0,455.2" fill="#9a6b12"/>
+<rect x="103.2" y="426.0" width="418.6" height="33.0" fill="white"/>
+<text x="312.5" y="450" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">1. Soil moisture 29.7 % [field protocol]</text>
+<polyline points="455,518 510,518 510,546 459,546" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="475.0,537.2 459,546 475.0,554.8" fill="#9a6b12"/>
+<rect x="514.0" y="513.0" width="482.2" height="33.0" fill="white"/>
+<text x="521" y="537" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">2. Normalise to schema v1; assign readingId</text>
+<polyline points="455,616 736,616" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="720.0,624.8 736,616 720.0,607.2" fill="#9a6b12"/>
+<rect x="312.9" y="578.0" width="569.2" height="33.0" fill="white"/>
+<text x="597.5" y="602" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">3. POST /farms/farm-001/telemetry + gateway token</text>
+<polyline points="740,680 1021,680" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1005.0,688.8 1021,680 1005.0,671.2" fill="#486174"/>
+<rect x="699.1" y="642.0" width="366.8" height="33.0" fill="white"/>
+<text x="882.5" y="666" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">4. submit(principal, farmId, body)</text>
+<polyline points="1025,744 1306,744" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1290.0,752.8 1306,744 1290.0,735.2" fill="#486174"/>
+<rect x="996.8" y="706.0" width="341.5" height="33.0" fill="white"/>
+<text x="1167.5" y="730" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">5. Gateway registered to farm?</text>
+<polyline points="1310,808 1029,808" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="1045.0,799.2 1029,808 1045.0,816.8" fill="none" stroke="#486174" stroke-width="2"/>
+<rect x="1043.7" y="770.0" width="247.5" height="33.0" fill="white"/>
+<text x="1167.5" y="794" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">6. Yes [else 403 / 404]</text>
+<polyline points="1025,862 1080,862 1080,890 1029,890" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1045.0,881.2 1029,890 1045.0,898.8" fill="#486174"/>
+<rect x="1084.0" y="857.0" width="468.6" height="33.0" fill="white"/>
+<text x="1091" y="881" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">7. Validate unit, range, UTC time [else 422]</text>
+<polyline points="1025,960 1876,960" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1860.0,968.8 1876,960 1860.0,951.2" fill="#486174"/>
+<rect x="1236.1" y="922.0" width="432.7" height="33.0" fill="white"/>
+<text x="1452.5" y="946" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">8. find(farmId, readingId) - replay check</text>
+<polyline points="1880,1024 1029,1024" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="1045.0,1015.2 1029,1024 1045.0,1032.8" fill="none" stroke="#486174" stroke-width="2"/>
+<rect x="1231.6" y="986.0" width="441.8" height="33.0" fill="white"/>
+<text x="1452.5" y="1010" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">9. Not found [same: 200 | different: 409]</text>
+<polyline points="1025,1088 1591,1088" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1575.0,1096.8 1591,1088 1575.0,1079.2" fill="#486174"/>
+<rect x="1196.2" y="1050.0" width="227.6" height="33.0" fill="white"/>
+<text x="1310.0" y="1074" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">10. classify(reading)</text>
+<polyline points="1595,1152 1876,1152" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1860.0,1160.8 1876,1152 1860.0,1143.2" fill="#486174"/>
+<rect x="1526.8" y="1114.0" width="421.4" height="33.0" fill="white"/>
+<text x="1737.5" y="1138" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">11. Last accepted value for this device</text>
+<polyline points="1595,1216 1029,1216" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="1045.0,1207.2 1029,1216 1045.0,1224.8" fill="none" stroke="#486174" stroke-width="2"/>
+<rect x="1083.4" y="1178.0" width="453.1" height="33.0" fill="white"/>
+<text x="1310.0" y="1202" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">12. ACCEPTED | QUARANTINED + reasons</text>
+<polyline points="1025,1280 1876,1280" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1860.0,1288.8 1876,1280 1860.0,1271.2" fill="#486174"/>
+<rect x="1293.3" y="1242.0" width="318.4" height="33.0" fill="white"/>
+<text x="1452.5" y="1266" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">13. Store reading with status</text>
+<polyline points="1025,1344 2161,1344" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="2145.0,1352.8 2161,1344 2145.0,1335.2" fill="#486174"/>
+<rect x="1390.2" y="1306.0" width="409.6" height="33.0" fill="white"/>
+<text x="1595.0" y="1330" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">14. publish(reading) - ACCEPTED only</text>
+<polyline points="1025,1408 744,1408" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="760.0,1399.2 744,1408 760.0,1416.8" fill="none" stroke="#486174" stroke-width="2"/>
+<rect x="777.8" y="1370.0" width="209.3" height="33.0" fill="white"/>
+<text x="882.5" y="1394" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">15. Stored reading</text>
+<polyline points="740,1472 459,1472" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="475.0,1463.2 459,1472 475.0,1480.8" fill="none" stroke="#486174" stroke-width="2"/>
+<rect x="414.1" y="1434.0" width="366.8" height="33.0" fill="white"/>
+<text x="597.5" y="1458" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">16. 201 Created (status, reasons)</text>
+<polyline points="455,1572 510,1572 510,1600 459,1600" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="475.0,1591.2 459,1600 475.0,1608.8" fill="#9a6b12"/>
+<rect x="514.0" y="1567.0" width="447.3" height="33.0" fill="white"/>
+<text x="521" y="1591" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">17. Hold readings up to 72 h while offline</text>
+<polyline points="455,1670 736,1670" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="720.0,1678.8 736,1670 720.0,1661.2" fill="#9a6b12"/>
+<rect x="363.1" y="1632.0" width="468.8" height="33.0" fill="white"/>
+<text x="597.5" y="1656" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">18. Resend same readingId after reconnect</text>
+<polyline points="740,1734 1021,1734" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1005.0,1742.8 1021,1734 1005.0,1725.2" fill="#486174"/>
+<rect x="644.0" y="1696.0" width="477.0" height="33.0" fill="white"/>
+<text x="882.5" y="1720" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">19. submit(): same readingId, same content</text>
+<polyline points="1025,1798 744,1798" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="760.0,1789.2 744,1798 760.0,1806.8" fill="none" stroke="#486174" stroke-width="2"/>
+<rect x="611.3" y="1760.0" width="542.4" height="33.0" fill="white"/>
+<text x="882.5" y="1784" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">20. Original record [not stored or published again]</text>
+<polyline points="740,1862 459,1862" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="475.0,1853.2 459,1862 475.0,1870.8" fill="none" stroke="#486174" stroke-width="2"/>
+<rect x="440.4" y="1824.0" width="314.3" height="33.0" fill="white"/>
+<text x="597.5" y="1848" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">21. 200 OK + original record</text>
+<polyline points="2165,1996 2446,1996" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="2430.0,2004.8 2446,1996 2430.0,1987.2" fill="#9a6b12"/>
+<rect x="2082.0" y="1958.0" width="451.0" height="33.0" fill="white"/>
+<text x="2307.5" y="1982" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">22. Relay ReadingAccepted, key = farmId</text>
+<polyline points="2450,2060 2731,2060" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="2715.0,2068.8 2731,2060 2715.0,2051.2" fill="#9a6b12"/>
+<rect x="2456.8" y="2022.0" width="271.3" height="33.0" fill="white"/>
+<text x="2592.5" y="2046" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">23. Deliver at least once</text>
+<polyline points="2735,2114 2680,2114 2680,2142 2731,2142" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="2715.0,2150.8 2731,2142 2715.0,2133.2" fill="#9a6b12"/>
+<rect x="2215.9" y="2109.0" width="460.1" height="33.0" fill="white"/>
+<text x="2669" y="2133" text-anchor="end" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">24. Skip seen eventId; evaluate alert rules</text>
+<text x="40" y="2258" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="21" font-style="italic" fill="#183047">Quarantined readings (step 12) are stored with reason codes but never published, so they cannot trigger irrigation or alerts (ASR5).</text>
+<text x="40" y="2292" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="21" font-style="italic" fill="#183047">The gateway receives 201 once the reading is stored; downstream processing is asynchronous and scales separately (ADR-02).</text>
+<text x="40" y="2326" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="21" font-style="italic" fill="#183047">Prototype: no edge gateway or broker. Postman calls the REST Controller directly at 127.0.0.1:8002, standing in for steps 3, 16, 18 and 21.</text>
+<polyline points="40,2388 160,2388" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="144.0,2396.8 160,2388 144.0,2379.2" fill="#486174"/>
+<text x="175" y="2394" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">Synchronous call</text>
+<polyline points="470,2388 590,2388" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polyline points="574.0,2396.8 590,2388 574.0,2379.2" fill="none" stroke="#486174" stroke-width="2"/>
+<text x="605" y="2394" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">Return</text>
+<polyline points="820,2388 940,2388" fill="none" stroke="#9a6b12" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="924.0,2396.8 940,2388 924.0,2379.2" fill="#9a6b12"/>
+<text x="955" y="2394" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">Planned interaction (not implemented)</text>
+<rect x="1520" y="2370" width="50" height="32" fill="#d9ebfa" stroke="#42647e" stroke-width="2"/>
+<text x="1585" y="2394" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">Telemetry component</text>
+<rect x="1990" y="2370" width="50" height="32" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
+<text x="2055" y="2394" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">Person / other container</text>
+<rect x="2420" y="2370" width="50" height="32" fill="#e9edf1" stroke="#42647e" stroke-width="2" stroke-dasharray="14 9"/>
+<text x="2485" y="2394" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="400" fill="#183047">Target container (not in prototype)</text>
 </svg>

@@ -63,11 +63,11 @@ const pb = (t) => new Paragraph({ heading: HeadingLevel.HEADING_1, pageBreakBefo
 
 const body = [
   new Paragraph({ children: [run("OzAgriMate Telemetry Architecture and API", { size: 40, bold: true })], spacing: { after: 60 } }),
-  para([run("Aditya Singh | ISYS3459 Assignment 4 | 24 October 2026", { size: 22, color: "486174" })], { after: 200 }),
+  para([run("Aditya Singh (s4139812) | ISYS3459 Assignment 4 | 24 October 2026", { size: 22, color: "486174" })], { after: 200 }),
   para("These sections document the architecture decisions, Telemetry component view, telemetry runtime view and telemetry API contributed by Aditya Singh, plus the repository integration work. The two telemetry endpoints pass 14 automated HTTP tests and a 19-request Postman collection with 59 of 59 assertions passing. Architecture decisions remain Proposed pending team review."),
 
   h1("Design basis and scope"),
-  para("The submitted Assignment 2 report lists Scalability among its top driving characteristics: the platform must grow from 5,000 to over 50,000 farms with tenfold seasonal telemetry spikes. ASR1 targets ingestion below two seconds, ASR5 requires suspicious readings not to trigger automated actions, ASR16 requires versioned APIs, constraint C3 requires 72-hour offline edge operation and C4 limits operations to at most eight engineers. ADR-01 places telemetry in its own Telemetry service, which owns the Telemetry Store and publishes accepted readings through the Event Broker."),
+  para("The submitted Assignment 2 report names Scalability and Interoperability among its top three driving characteristics: the platform must grow from 5,000 to 50,000 farms with sub-second ingestion and accept LoRaWAN, NB-IoT and other sensor networks without rebuilding core services. ASR22 requires absorbing tenfold seasonal spikes without data loss, ASR3 requires 72-hour edge buffering with resync within 15 minutes, ASR5 requires anomalous readings not to trigger automated actions, ASR15 and ASR16 require adapter-based onboarding and versioned APIs, and C4 limits operations to at most eight engineers. ADR-01 places telemetry in its own Telemetry service, which owns the Telemetry Store and publishes accepted readings through the Event Broker."),
   para("This contribution implements reading submission and farm-scoped reading retrieval. The Farm Edge Gateway, Event Broker, autoscaling and the time-series database are target architecture; the prototype uses in-memory partitions and an in-memory outbox."),
   h2("Contribution coverage"),
   table([3000, W - 3000], [["Artefact", "Scope and status"],
@@ -80,13 +80,13 @@ const body = [
     ["Testing evidence", "14 telemetry tests; 49 of 49 repository tests; Newman run 19 requests, 59 of 59 assertions"]]),
 
   pb("ADR 02 Scalable telemetry ingestion"),
-  ...adr(C.adr02, "Scalability driving QA (5,000 to 50,000+ farms; tenfold seasonal spikes); ASR1; constraints C3 and C4; supports Elasticity. Builds on ADR-01 asynchronous telemetry processing; quarantined readings are never published (ASR5, ADR-03)."),
+  ...adr(C.adr02, "Scalability (top-three driving QA) and Elasticity; ASR22, ASR3, ASR1; risk R2 (10x load testing); constraints C3 and C4. Refines ADR-01's asynchronous telemetry processing into concrete scaling mechanisms; quarantined readings are never published (ASR5, ADR-03)."),
   h1("ADR 06 Edge-to-cloud reading contract"),
-  ...adr(C.adr06, "ASR5, ASR16; constraint C3; Interoperability and Scalability QAs. Event fields satisfy the team integration contract (stable reading ID, farm ID, device ID, UTC time, metric, value, unit, schema version). Enables ADR-02 idempotent replay."),
+  ...adr(C.adr06, "Interoperability (top-three driving QA); ASR1, ASR3, ASR5, ASR15, ASR16; constraints C2 and C3. Event fields satisfy the team integration contract (stable reading ID, farm ID, device ID, UTC time, metric, value, unit, schema version). Enables ADR-02 idempotent replay; complements ADR-04."),
 
   pb("Telemetry component view"),
-  caption("OzAgriMate Telemetry C4 Component Diagram"),
-  image("diagrams/Telemetry_Components.png", 560),
+  caption("Figure 5 OzAgriMate Telemetry C4 Component Diagram"),
+  image("diagrams/Telemetry_Components.png", 642),
   para("The view decomposes the Telemetry container into the modules implemented in services/telemetry/, so diagram and repository correspond one-to-one. Field-protocol adaptation happens on the Farm Edge Gateway (ADR-06), so Telemetry contains no vendor adapters. Interactions with the Event Broker and consuming services are dashed because no broker is deployed.", { before: 120 }),
   table([3000, 2600, W - 5600], [["Component", "Module", "Responsibility"],
     ["HTTP Server", "app.py", "Local HTTP transport and composition root, port 8002"],
@@ -103,9 +103,9 @@ const body = [
 
 const runtime = [
   h1("Runtime view: telemetry submission and processing"),
-  caption("OzAgriMate Runtime Diagram 1: telemetry submission and processing (UML sequence)"),
+  caption("Figure 6 OzAgriMate Runtime Diagram 1: telemetry submission and processing (UML sequence)"),
   para([run("Interaction flow: ", { bold: true }), run(C.runtime_explanation)], { after: 60 }),
-  image("diagrams/Telemetry_Runtime.png", 700),
+  image("diagrams/Telemetry_Runtime.png", 715),
 ];
 
 const api = [
@@ -114,7 +114,8 @@ const api = [
   h2("POST /farms/{farmId}/telemetry"),
   endpointTable("POST", C.post_description, "/farms/{farmId}/telemetry", POST_REQ, POST_RES, "201 Created (new reading); 200 OK (identical replay returns the original record)"),
   h2("GET /farms/{farmId}/telemetry"),
-  endpointTable("GET", C.get_description, "/farms/{farmId}/telemetry?metric=soilMoisture&from=2026-10-23T20:30:00Z", "N/A", GET_RES, "200 OK"),
+  endpointTable("GET", C.get_description, "/farms/{farmId}/telemetry", "N/A", GET_RES, "200 OK"),
+  para("Sample response is for GET /farms/farm-001/telemetry?metric=soilMoisture&from=2026-10-23T20:30:00Z; all query parameters are optional.", { before: 80 }),
   para("receivedAt is assigned by the server, so its value differs on each run. A spike or implausible value is still stored (201) but with status QUARANTINED and reasons such as SPIKE_DETECTED or IMPLAUSIBLE_VALUE; it is never published as an accepted reading.", { before: 120 }),
 
   h2("Validation and error behaviour"),
@@ -170,8 +171,8 @@ const api = [
 ];
 
 const PORTRAIT = { size: { width: 11906, height: 16838 }, margin: { top: 1134, bottom: 1134, left: 1134, right: 1134 } };
-const LANDSCAPE = { size: { width: 11906, height: 16838, orientation: PageOrientation.LANDSCAPE }, margin: { top: 700, bottom: 700, left: 1000, right: 1000 } };
-const footer = () => new Footer({ children: [new Paragraph({ alignment: AlignmentType.RIGHT, children: [run("Aditya Singh | page ", { size: 17 }), new TextRun({ children: [PageNumber.CURRENT], size: 17, font: "Calibri" })] })] });
+const LANDSCAPE = { size: { width: 11906, height: 16838, orientation: PageOrientation.LANDSCAPE }, margin: { top: 500, bottom: 500, left: 700, right: 700 } };
+const footer = () => new Footer({ children: [new Paragraph({ alignment: AlignmentType.RIGHT, children: [run("Aditya Singh (s4139812) | page ", { size: 17 }), new TextRun({ children: [PageNumber.CURRENT], size: 17, font: "Calibri" })] })] });
 
 const doc = new Document({
   creator: "Aditya Singh", title: "OzAgriMate Telemetry Architecture and API",

@@ -4,12 +4,26 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 from drawlib import Canvas, BLUE, GREEN, GREY, BOUNDARY
 
-c = Canvas(2400, 2230)
+
+class BigCanvas(Canvas):
+    """Larger type than the shared default so the figure stays readable when printed."""
+    def element(self, x, y, w, h, title, tag, desc, fill=BLUE, dashed=False):
+        self.rect(x, y, w, h, fill, dashed=dashed)
+        cx = x + w / 2
+        self.text(cx, y + 40, title, 27, "bold")
+        self.text(cx, y + 70, tag, 20)
+        for i, line in enumerate(desc):
+            self.text(cx, y + 104 + i * 29, line, 22)
+
+    def label(self, x, y, lines, size=21, weight="normal", anchor="middle", bg="white"):
+        super().label(x, y, lines, size, weight, anchor, bg)
+
+c = BigCanvas(2400, 2230)
 c.text(40, 77, "OzAgriMate Telemetry - C4 Component Diagram", 32, "bold", "start")
 c.text(40, 107, "Components inside the Telemetry container | solid = implemented module, dashed = proposed / production-only interaction", 19, "normal", "start")
 
-W, H = 540, 170
-X1, X2, X3 = 120, 930, 1740
+W, H = 600, 175
+X1, X2, X3 = 100, 900, 1700
 cx1, cx2, cx3 = X1 + W / 2, X2 + W / 2, X3 + W / 2
 
 # Neighbouring containers (outside the boundary)
@@ -52,8 +66,11 @@ c.element(X1, B, W, H, "Event Broker", "[Container: managed durable messaging]",
           ["Buffers accepted readings; supports", "replay and retry."], GREEN)
 c.element(X2, B, W, H, "Telemetry Store", "[Container: managed time-series data]",
           ["Accepted and quarantined readings,", "partitioned by farm and time."], GREEN)
-c.element(X3, B, W, H, "Irrigation and Alerts / AI", "[Containers: backend services]",
-          ["Consume accepted readings only;", "never quarantined ones."], GREY)
+HW = (W - 30) // 2
+c.element(1575, B, 370, H, "Irrigation and Alerts", "[Container: backend]",
+          ["Evaluates alert rules", "on accepted readings."], GREY)
+c.element(1960, B, 380, H, "AI Recommendation", "[Container: inference]",
+          ["Uses accepted readings", "as advice inputs."], GREY)
 
 # Relationships - inbound
 c.arrow([(cx1 - 120, 320), (cx1 - 120, R1)]);             c.label(cx1 - 110, 360, ["Submits readings", "[JSON/HTTPS]"], anchor="start")
@@ -78,8 +95,10 @@ c.arrow([(X3, R2 + 145), (1605, R2 + 145), (1605, R4 + 85), (X2 + W, R4 + 85)]);
 # Outbound to data and messaging
 c.arrow([(cx1, R4 + H), (cx1, B)], dashed=True);          c.label(cx1, R4 + H + 95, "Relays events [proposed; in-memory outbox now]")
 c.arrow([(cx2, R4 + H), (cx2, B)]);                       c.label(cx2, R4 + H + 95, "Reads / writes [in-memory dict in prototype]")
-c.arrow([(cx1, B + H), (cx1, B + H + 45), (cx3, B + H + 45), (cx3, B + H)], dashed=True)
-c.label(cx2, B + H + 52, "Delivers ReadingAccepted events, partitioned by farmId [proposed]")
+IA, AI = 1575 + 185, 1960 + 190
+c.arrow([(cx1, B + H), (cx1, B + H + 50), (AI, B + H + 50), (AI, B + H)], dashed=True)
+c.arrow([(IA, B + H + 50), (IA, B + H)], dashed=True)
+c.label(cx2, B + H + 58, "Delivers ReadingAccepted events, partitioned by farmId [proposed]")
 
 # Legend
 y = B + H + 120
@@ -89,9 +108,9 @@ for i, (fill, name) in enumerate([(BLUE, "Implemented component (Python module)"
                                   (GREEN, "Data store or messaging container")]):
     x = 60 + i * 640
     c.rect(x, y + 20, 60, 36, fill)
-    c.text(x + 75, y + 46, name, 18, "normal", "start")
-c.arrow([(1980, y + 38), (2080, y + 38)], dashed=True); c.text(2090, y + 44, "Proposed", 18, "normal", "start")
-c.text(60, y + 110, "Prototype: one Python process at 127.0.0.1:8002 with demonstration identities; no broker, OAuth provider or time-series database is deployed.", 18, "italic", "start")
+    c.text(x + 75, y + 46, name, 21, "normal", "start")
+c.arrow([(1980, y + 38), (2080, y + 38)], dashed=True); c.text(2090, y + 44, "Proposed", 21, "normal", "start")
+c.text(60, y + 115, "Prototype: one Python process at 127.0.0.1:8002 with demonstration identities; no broker, OAuth provider or time-series database is deployed.", 21, "italic", "start")
 
 c.img = c.img.crop((0, 0, 2400, int(y + 140)))
 c.svg[0] = f'<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="{int(y + 140)}" viewBox="0 0 2400 {int(y + 140)}">'
