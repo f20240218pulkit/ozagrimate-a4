@@ -18,4 +18,4 @@ Telemetry service added at `services/telemetry/` (port 8002): POST and GET `/far
 
 Integration: `run_all.py` starts all three services; `requirements.txt` records stdlib-only runtime; `scripts/package_submission.py` builds and verifies the clean ZIP. Full suite 49/49. With `run_all.py`, the farm, telemetry and irrigation Postman collections all passed (33, 59, 40 assertions).
 
-Outstanding: Bradley's alert-rule endpoints (already listed by `run_all.py`; they return 404 until merged), Aditya's cross-review of Bradley's work, and re-running the ZIP builder after the final merge.
+Bradley's alert-rule endpoints now live in `services/irrigation_alerts/` (moved from Farm Management on 25 October so the code matches ADR-01 and the container view) and are served on port 8003 as `run_all.py` lists. Outstanding: Aditya's cross-review of Bradley's work and re-running the ZIP builder after the final merge.

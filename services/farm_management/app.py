@@ -14,11 +14,10 @@ def create_server(host="127.0.0.1", port=8001):
 
     class Handler(BaseHTTPRequestHandler):
         def respond(self, status, headers, payload):
-            data = b"" if status == 204 else json.dumps(payload, allow_nan=False).encode("utf-8")
+            data = json.dumps(payload, allow_nan=False).encode("utf-8")
             self.send_response(status)
-            if status != 204:
-                self.send_header("Content-Type", "application/json; charset=utf-8")
-                self.send_header("Content-Length", str(len(data)))
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length", str(len(data)))
             self.send_header("Cache-Control", "no-store")
             for key, value in headers.items():
                 self.send_header(key, value)
