@@ -13,6 +13,16 @@ from threading import Lock
 from time import monotonic
 from .models import ApiError
 
+# Metric catalogue for alert rules. It mirrors the Telemetry reading contract (ADR-06)
+# so a rule can only be written in the unit that accepted readings use. A rule's
+# sensorId is matched against the reading's deviceId (for example "sm-north-01").
+METRIC_UNITS = {
+    "soilMoisture": "%",
+    "soilTemperature": "degC",
+    "airTemperature": "degC",
+    "rainfall": "mm",
+}
+
 
 def finite_number(value):
     try:
@@ -68,6 +78,19 @@ class AlertRuleService:
                     "VALIDATION_ERROR",
                     field + " must contain 1 to 120 nonblank characters.",
                 )
+        metric, unit = payload["metric"].strip(), payload["unit"].strip()
+        if metric not in METRIC_UNITS:
+            raise ApiError(
+                422,
+                "VALIDATION_ERROR",
+                "metric must be one of " + ", ".join(METRIC_UNITS) + ".",
+            )
+        if unit != METRIC_UNITS[metric]:
+            raise ApiError(
+                422,
+                "VALIDATION_ERROR",
+                metric + " must use unit '" + METRIC_UNITS[metric] + "'.",
+            )
         if payload["operator"] not in (">", "<") or payload["severity"] not in (
             "warning",
             "critical",

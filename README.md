@@ -47,7 +47,7 @@ Listens at `http://127.0.0.1:8002` (macOS/Linux: `python3 -m services.telemetry.
 py -3 -m services.irrigation_alerts.app
 ```
 
-Listens at `http://127.0.0.1:8003` (macOS/Linux: `python3 -m services.irrigation_alerts.app`). Seeded fixtures: `farm-001` (owner A, worker A granted), `farm-002` (owner B), `farm-003` (owner A, stalled event source for the 503 demo) and `irr-001` (an APPROVED request for the 409 demo). Import `postman/Thomas_Irrigation.postman_collection.json` and run its 13 requests in order against a freshly started server. The same service serves alert rules: owners create and delete rules for farms they own (`postman/Bradley_Alert_Rules.postman_collection.json`).
+Listens at `http://127.0.0.1:8003` (macOS/Linux: `python3 -m services.irrigation_alerts.app`). Seeded fixtures: `farm-001` (owner A, worker A granted), `farm-002` (owner B), `farm-003` (owner A, stalled event source for the 503 demo) and `irr-001` (an APPROVED request for the 409 demo). Import `postman/Thomas_Irrigation.postman_collection.json` and run its 13 requests in order against a freshly started server. The same service serves alert rules: owners create and delete rules for farms they own (`postman/Bradley_Alert_Rules.postman_collection.json`, 16 requests, 48 assertions). A rule's `sensorId` is the `deviceId` of the telemetry readings it monitors (for example `sm-north-01`), and its unit must match the telemetry catalogue: `soilMoisture` in `%`, `soilTemperature` and `airTemperature` in `degC`, `rainfall` in `mm`.
 
 ## Test
 
@@ -55,7 +55,7 @@ Listens at `http://127.0.0.1:8003` (macOS/Linux: `python3 -m services.irrigation
 py -3 -m unittest discover -s tests -v
 ```
 
-Current result: 60 tests pass (farm, telemetry, irrigation, alert rules, projection and combined start-up).
+Current result: 64 tests pass (farm, telemetry, irrigation, alert rules, projection and combined start-up).
 
 ## Build the submission ZIP
 
@@ -93,7 +93,7 @@ Use `Authorization: Bearer demo-owner-a`. `demo-owner-b` represents another owne
 | `scripts/package_submission.py` | Builds `dist/OzAgriMate_Code_Repository.zip` and re-runs the tests from the extracted copy |
 | `services/irrigation_alerts/` | Irrigation and Alerts service: irrigation requests (Thomas) and alert rules (Bradley), sharing one REST controller, farm access projection and identity adapter |
 | `services/farm_management/` | HTTP adapter, application service, repository, models and demonstration access policy |
-| `tests/` | HTTP integration tests per service plus a combined start-up test (60 tests in total) |
+| `tests/` | HTTP integration tests per service plus a combined start-up test (64 tests in total) |
 | `postman/` | One collection per endpoint owner, each with success and error scenarios and assertions |
 | `diagrams/` | Editable SVGs and high-resolution PNGs |
 | `docs/Pulkit_A4_Report_Section.docx` | Editable report contribution |

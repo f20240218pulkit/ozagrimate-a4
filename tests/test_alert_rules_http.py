@@ -14,8 +14,9 @@ class AlertRuleHttpTests(unittest.TestCase):
         self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
         self.thread.start()
         self.port = self.server.server_address[1]
-        self.rule = {"name": "Dry north paddock", "sensorId": "sensor-north-01", "metric": "soilMoisture",
-                     "operator": "<", "threshold": 20, "unit": "percent", "severity": "critical",
+        # sensorId matches the telemetry reading's deviceId; units follow the telemetry catalogue.
+        self.rule = {"name": "Dry north paddock", "sensorId": "sm-north-01", "metric": "soilMoisture",
+                     "operator": "<", "threshold": 20, "unit": "%", "severity": "critical",
                      "reminderMinutes": 30}
 
     def tearDown(self):
@@ -110,8 +111,31 @@ class AlertRuleHttpTests(unittest.TestCase):
         status, headers, _ = self.request("PUT", BASE + "/rule-001", self.rule)
         self.assertEqual((status, headers["Allow"]), (405, "DELETE"))
 
-    def test_rule_evaluation_hook_raises_then_resolves(self):
-        # Bradley's evaluate() incident logic: not exposed over HTTP, so exercised directly.
+    # --- Metric / unit catalogue (mirrors Telemetry's reading contract) -----------------
+    def test_unsupported_metric_is_rejected(self):
+        for metric in ("humidity", "soilmoisture", ""):
+            with self.subTest(metric=metric):
+                status, _, body = self.request("POST", BASE, {**self.rule, "metric": metric})
+                self.assertEqual((status, body["error"]["code"]), (422, "VALIDATION_ERROR"))
+
+    def test_wrong_unit_for_metric_is_rejected(self):
+        cases = [("soilMoisture", "percent"), ("soilMoisture", "degC"), ("soilTemperature", "C"),
+                 ("airTemperature", "celsius"), ("rainfall", "%"), ("rainfall", "MM")]
+        for metric, unit in cases:
+            with self.subTest(metric=metric, unit=unit):
+                status, _, body = self.request("POST", BASE, {**self.rule, "metric": metric, "unit": unit})
+                self.assertEqual((status, body["error"]["code"]), (422, "VALIDATION_ERROR"))
+
+    def test_every_catalogue_pair_is_accepted_after_trimming(self):
+        for metric, unit in [("soilMoisture", "%"), ("soilTemperature", "degC"),
+                             ("airTemperature", "degC"), ("rainfall", "mm")]:
+            with self.subTest(metric=metric):
+                status, _, body = self.request("POST", BASE, {**self.rule, "metric": " " + metric + " ",
+                                                              "unit": " " + unit + " "})
+                self.assertEqual((status, body["metric"], body["unit"]), (201, metric, unit))
+
+    # --- Rule evaluation with % (Bradley's evaluate(); not exposed over HTTP) ----------
+    def evaluator(self):
         from services.irrigation_alerts.alert_rule_service import AlertRuleService
         from services.irrigation_alerts.farm_projection import FarmAccessProjection
         from services.irrigation_alerts.farm_events import FixtureFarmEventSource
@@ -119,15 +143,27 @@ class AlertRuleHttpTests(unittest.TestCase):
         clock = lambda: 5000.0
         projection = FarmAccessProjection()
         alerts = AlertRuleService(projection, FixtureFarmEventSource(projection, clock), clock)
-        alerts.create(Principal("owner-a", "owner"), "farm-001", self.rule)
-        first = alerts.evaluate("farm-001", "sensor-north-01", "soilMoisture", 12, "percent", now=0)
-        repeat = alerts.evaluate("farm-001", "sensor-north-01", "soilMoisture", 11, "percent", now=60)
-        reminder = alerts.evaluate("farm-001", "sensor-north-01", "soilMoisture", 10, "percent", now=1800)
-        alerts.evaluate("farm-001", "sensor-north-01", "soilMoisture", 35, "percent", now=1900)
-        again = alerts.evaluate("farm-001", "sensor-north-01", "soilMoisture", 15, "percent", now=2000)
-        self.assertEqual([n["kind"] for n in first + repeat + reminder + again],
-                         ["triggered", "reminder", "triggered"])
+        rule = alerts.create(Principal("owner-a", "owner"), "farm-001", self.rule)
+        return alerts, rule
 
+    def test_valid_percent_rule_alerts_on_matching_low_reading(self):
+        alerts, rule = self.evaluator()
+        emitted = alerts.evaluate("farm-001", "sm-north-01", "soilMoisture", 12.5, "%", now=0)
+        self.assertEqual([(n["ruleId"], n["kind"], n["value"]) for n in emitted], [(rule["ruleId"], "triggered", 12.5)])
+        # A reading above the threshold, another device, or another unit does not trigger it.
+        self.assertEqual(alerts.evaluate("farm-001", "sm-north-01", "soilMoisture", 25, "%", now=10), [])
+        self.assertEqual(alerts.evaluate("farm-001", "sm-south-02", "soilMoisture", 5, "%", now=20), [])
+        self.assertEqual(alerts.evaluate("farm-001", "sm-north-01", "soilMoisture", 5, "percent", now=30), [])
+
+    def test_duplicate_suppression_and_critical_reminder_with_percent(self):
+        alerts, _ = self.evaluator()
+        first = alerts.evaluate("farm-001", "sm-north-01", "soilMoisture", 12, "%", now=0)
+        duplicate = alerts.evaluate("farm-001", "sm-north-01", "soilMoisture", 11, "%", now=60)
+        reminder = alerts.evaluate("farm-001", "sm-north-01", "soilMoisture", 10, "%", now=1800)
+        alerts.evaluate("farm-001", "sm-north-01", "soilMoisture", 35, "%", now=1900)        # resolves incident
+        again = alerts.evaluate("farm-001", "sm-north-01", "soilMoisture", 15, "%", now=2000)
+        self.assertEqual(duplicate, [])
+        self.assertEqual([n["kind"] for n in first + reminder + again], ["triggered", "reminder", "triggered"])
 
 if __name__ == "__main__":
     unittest.main()
