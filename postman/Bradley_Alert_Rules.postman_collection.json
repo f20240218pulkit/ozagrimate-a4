@@ -117,7 +117,8 @@
        "language": "json"
       }
      }
-    }
+    },
+    "description": "Owner submits a rule using the wrong unit, percent.\nExpected response: 422 VALIDATION_ERROR."
    },
    "event": [
     {
