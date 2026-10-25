@@ -117,7 +117,8 @@
        "language": "json"
       }
      }
-    }
+    },
+    "description": "Owner submits a rule using the wrong unit, percent.\nExpected response: 422 VALIDATION_ERROR."
    },
    "event": [
     {
@@ -524,7 +525,7 @@
       "type": "text/javascript",
       "exec": [
        "pm.test(\"HTTP 204\", function () { pm.response.to.have.status(204); });",
-       "pm.test(\"No response body\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(null); });"
+       "pm.test(\"No response body\", function () { pm.expect(pm.response.text()).to.eql(\"\"); });"
       ]
      }
     }
