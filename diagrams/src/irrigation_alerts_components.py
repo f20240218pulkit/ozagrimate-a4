@@ -37,7 +37,7 @@ c.element(X1, R2, W, H, "Irrigation Application Service", "[Component: irrigatio
 c.element(X2, R2, W, H, "Domain Model / Validator", "[Component: models.py]",
           ["Irrigation types and ADR-03 safe", "limits: 1-240 min, 0.5-50 mm."])
 c.element(X3, R2, W, H, "Alert Rule Application Service", "[Component: alert_rule_service.py]",
-          ["Owner-only rule create and delete;", "validates and holds rules in memory."])
+          ["Owner-only rules (metric/unit checked);", "evaluates accepted readings."])
 c.element(X1, R3, W, H, "Repository", "[Component: repository.py]",
           ["Stores irrigation requests in", "memory; scoped lookup by farm."])
 c.element(X2, R3, W, H, "Farm Access Projection", "[Component: farm_projection.py]",
@@ -76,7 +76,10 @@ c.arrow([(X1 + W, R2 + 145), (X1 + W + 70, R2 + 145), (X1 + W + 70, R3 + 85), (X
 c.label((X1 + W + X2) / 2 + 35, R3 + 72, ["Checks farm", "access"])
 c.arrow([(X3, R2 + 145), (X3 - 70, R2 + 145), (X3 - 70, R3 + 85), (X2 + W, R3 + 85)])
 c.label((X2 + W + X3) / 2 - 35, R3 + 72, ["Checks owner", "access"])
-c.arrow([(cx3 + 120, R2 + H), (cx3 + 120, R3)], dashed=True); c.label(cx3 + 120, R2 + H + 62, "Evaluates readings [planned]")
+c.arrow([(cx3 + 120, R2 + H), (cx3 + 120, R3)], dashed=True); c.label(cx3 + 120, R2 + H + 62, ["Requests notification", "[proposed]"])
+# Accepted readings reach alert evaluation only through the Event Broker (no direct sensor ingestion)
+c.arrow([(X2 + W, BY + 60), (X3 - 35, BY + 60), (X3 - 35, R3 - 45), (cx3 - 150, R3 - 45), (cx3 - 150, R2 + H)], dashed=True)
+c.label(X3 - 35, BY - 230, ["Delivers accepted", "readings [proposed]"])
 # Projection fed by consumer
 c.arrow([(cx2, R4), (cx2, R3 + H)], dashed=True);              c.label(cx2, R3 + H + 62, "Applies events and snapshots")
 # Down to stores / broker / provider

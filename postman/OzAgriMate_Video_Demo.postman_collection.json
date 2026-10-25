@@ -539,7 +539,7 @@
       "url": "{{irrigationAlertsUrl}}/farms/farm-001/alert-rules",
       "body": {
        "mode": "raw",
-       "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
+       "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sm-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"%\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
        "options": {
         "raw": {
          "language": "json"
@@ -563,7 +563,7 @@
      ]
     },
     {
-     "name": "15 POST /alert-rules - worker forbidden (403)",
+     "name": "15 POST /alert-rules - wrong unit 'percent' (422)",
      "request": {
       "method": "POST",
       "header": [
@@ -573,13 +573,13 @@
        },
        {
         "key": "Authorization",
-        "value": "Bearer demo-worker-a"
+        "value": "Bearer demo-owner-a"
        }
       ],
       "url": "{{irrigationAlertsUrl}}/farms/farm-001/alert-rules",
       "body": {
        "mode": "raw",
-       "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
+       "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sm-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
        "options": {
         "raw": {
          "language": "json"
@@ -593,9 +593,9 @@
        "script": {
         "type": "text/javascript",
         "exec": [
-         "pm.test(\"HTTP 403\", function () { pm.response.to.have.status(403); });",
+         "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
          "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
-         "pm.test(\"Error code FORBIDDEN\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FORBIDDEN\"); });"
+         "pm.test(\"Error code VALIDATION_ERROR\", function () { pm.expect(pm.response.json().error.code).to.eql(\"VALIDATION_ERROR\"); });"
         ]
        }
       }

@@ -2,7 +2,7 @@
  "info": {
   "name": "Bradley - OzAgriMate Alert Rules",
   "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-  "description": "Run in order against a freshly started Irrigation and Alerts service (port 8003). Only farm owners manage alert rules. Fixture tokens are demonstration identities."
+  "description": "Run in order against a freshly started Irrigation and Alerts service (port 8003). Only farm owners manage alert rules. A rule's sensorId matches the telemetry reading's deviceId, and units follow the telemetry catalogue: soilMoisture %, soilTemperature and airTemperature degC, rainfall mm. Fixture tokens are demonstration identities."
  },
  "variable": [
   {
@@ -32,7 +32,7 @@
     "url": "{{baseUrl}}/farms/farm-001/alert-rules",
     "body": {
      "mode": "raw",
-     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sm-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"%\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
      "options": {
       "raw": {
        "language": "json"
@@ -56,7 +56,7 @@
    ]
   },
   {
-   "name": "02 Create rule with no reminder (trimmed name)",
+   "name": "02 Create air-temperature rule (trimmed name, no reminder)",
    "request": {
     "method": "POST",
     "header": [
@@ -72,7 +72,7 @@
     "url": "{{baseUrl}}/farms/farm-001/alert-rules",
     "body": {
      "mode": "raw",
-     "raw": "{\n  \"name\": \"  Hot afternoon  \",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"airTemperature\",\n  \"operator\": \">\",\n  \"threshold\": 38,\n  \"unit\": \"celsius\",\n  \"severity\": \"warning\",\n  \"reminderMinutes\": null\n}",
+     "raw": "{\n  \"name\": \"  Hot afternoon  \",\n  \"sensorId\": \"wx-01\",\n  \"metric\": \"airTemperature\",\n  \"operator\": \">\",\n  \"threshold\": 38,\n  \"unit\": \"degC\",\n  \"severity\": \"warning\",\n  \"reminderMinutes\": null\n}",
      "options": {
       "raw": {
        "language": "json"
@@ -95,7 +95,7 @@
    ]
   },
   {
-   "name": "03 Reject invalid operator",
+   "name": "03 Reject soilMoisture in 'percent' (unit must be %)",
    "request": {
     "method": "POST",
     "header": [
@@ -111,7 +111,7 @@
     "url": "{{baseUrl}}/farms/farm-001/alert-rules",
     "body": {
      "mode": "raw",
-     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \">=\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sm-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
      "options": {
       "raw": {
        "language": "json"
@@ -134,7 +134,7 @@
    ]
   },
   {
-   "name": "04 Reject reminder above one week",
+   "name": "04 Reject unsupported metric",
    "request": {
     "method": "POST",
     "header": [
@@ -150,7 +150,7 @@
     "url": "{{baseUrl}}/farms/farm-001/alert-rules",
     "body": {
      "mode": "raw",
-     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 10081\n}",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sm-north-01\",\n  \"metric\": \"humidity\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"%\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
      "options": {
       "raw": {
        "language": "json"
@@ -173,7 +173,7 @@
    ]
   },
   {
-   "name": "05 Reject caller-supplied ruleId",
+   "name": "05 Reject invalid operator",
    "request": {
     "method": "POST",
     "header": [
@@ -189,7 +189,7 @@
     "url": "{{baseUrl}}/farms/farm-001/alert-rules",
     "body": {
      "mode": "raw",
-     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30,\n  \"ruleId\": \"rule-777\"\n}",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sm-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \">=\",\n  \"threshold\": 20,\n  \"unit\": \"%\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
      "options": {
       "raw": {
        "language": "json"
@@ -212,7 +212,85 @@
    ]
   },
   {
-   "name": "06 Worker cannot create rules",
+   "name": "06 Reject reminder above one week",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/alert-rules",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sm-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"%\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 10081\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code VALIDATION_ERROR\", function () { pm.expect(pm.response.json().error.code).to.eql(\"VALIDATION_ERROR\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "07 Reject caller-supplied ruleId",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/alert-rules",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sm-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"%\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30,\n  \"ruleId\": \"rule-777\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code VALIDATION_ERROR\", function () { pm.expect(pm.response.json().error.code).to.eql(\"VALIDATION_ERROR\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "08 Worker cannot create rules",
    "request": {
     "method": "POST",
     "header": [
@@ -228,7 +306,7 @@
     "url": "{{baseUrl}}/farms/farm-001/alert-rules",
     "body": {
      "mode": "raw",
-     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sm-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"%\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
      "options": {
       "raw": {
        "language": "json"
@@ -251,7 +329,7 @@
    ]
   },
   {
-   "name": "07 Another owner cannot create on farm-001",
+   "name": "09 Another owner cannot create on farm-001",
    "request": {
     "method": "POST",
     "header": [
@@ -267,7 +345,7 @@
     "url": "{{baseUrl}}/farms/farm-001/alert-rules",
     "body": {
      "mode": "raw",
-     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sm-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"%\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
      "options": {
       "raw": {
        "language": "json"
@@ -290,7 +368,7 @@
    ]
   },
   {
-   "name": "08 Reject when farm access is stale",
+   "name": "10 Reject when farm access is stale",
    "request": {
     "method": "POST",
     "header": [
@@ -306,7 +384,7 @@
     "url": "{{baseUrl}}/farms/farm-003/alert-rules",
     "body": {
      "mode": "raw",
-     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sm-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"%\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
      "options": {
       "raw": {
        "language": "json"
@@ -329,7 +407,7 @@
    ]
   },
   {
-   "name": "09 Missing authentication",
+   "name": "11 Missing authentication",
    "request": {
     "method": "POST",
     "header": [
@@ -341,7 +419,7 @@
     "url": "{{baseUrl}}/farms/farm-001/alert-rules",
     "body": {
      "mode": "raw",
-     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sm-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"%\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
      "options": {
       "raw": {
        "language": "json"
@@ -364,7 +442,7 @@
    ]
   },
   {
-   "name": "10 Another owner cannot delete through their farm",
+   "name": "12 Another owner cannot delete through their farm",
    "request": {
     "method": "DELETE",
     "header": [
@@ -394,7 +472,7 @@
    ]
   },
   {
-   "name": "11 Worker cannot delete rules",
+   "name": "13 Worker cannot delete rules",
    "request": {
     "method": "DELETE",
     "header": [
@@ -424,7 +502,7 @@
    ]
   },
   {
-   "name": "12 Delete rule - owner A",
+   "name": "14 Delete rule - owner A",
    "request": {
     "method": "DELETE",
     "header": [
@@ -453,7 +531,7 @@
    ]
   },
   {
-   "name": "13 Delete same rule again",
+   "name": "15 Delete same rule again",
    "request": {
     "method": "DELETE",
     "header": [
@@ -483,7 +561,7 @@
    ]
   },
   {
-   "name": "14 Unsupported method on rule",
+   "name": "16 Unsupported method on rule",
    "request": {
     "method": "PUT",
     "header": [
@@ -499,7 +577,7 @@
     "url": "{{baseUrl}}/farms/farm-001/alert-rules/{{ruleId}}",
     "body": {
      "mode": "raw",
-     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sm-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"%\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
      "options": {
       "raw": {
        "language": "json"
