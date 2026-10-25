@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1720" viewBox="0 0 2400 1720">
+<rect width="100%" height="100%" fill="white"/>
+<text x="40" y="77" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="32" font-weight="700" fill="#183047">OzAgriMate - C4 System Context Diagram</text>
+<text x="40" y="107" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">People and external systems around the OzAgriMate Platform | dashed = proposed extension outside the core prototype</text>
+<rect x="40" y="150" width="420" height="170" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
+<text x="250.0" y="188" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Farm Owner</text>
+<text x="250.0" y="214" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Person]</text>
+<text x="250.0" y="246" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Owns farms; controls sharing,</text>
+<text x="250.0" y="272" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">consent and approvals.</text>
+<rect x="510" y="150" width="420" height="170" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
+<text x="720.0" y="188" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Farm Worker</text>
+<text x="720.0" y="214" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Person]</text>
+<text x="720.0" y="246" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Logs observations and</text>
+<text x="720.0" y="272" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">requests irrigation.</text>
+<rect x="980" y="150" width="420" height="170" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
+<text x="1190.0" y="188" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Agronomist</text>
+<text x="1190.0" y="214" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Person]</text>
+<text x="1190.0" y="246" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Reviews granted farms;</text>
+<text x="1190.0" y="272" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">advises or overrides advice.</text>
+<rect x="1450" y="150" width="420" height="170" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
+<text x="1660.0" y="188" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Operations Manager</text>
+<text x="1660.0" y="214" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Person]</text>
+<text x="1660.0" y="246" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Monitors KPIs across</text>
+<text x="1660.0" y="272" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">authorised farms.</text>
+<rect x="1920" y="150" width="420" height="170" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
+<text x="2130.0" y="188" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Platform Administrator</text>
+<text x="2130.0" y="214" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[Person]</text>
+<text x="2130.0" y="246" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Configures tenants, roles</text>
+<text x="2130.0" y="272" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">and integrations.</text>
+<rect x="900" y="640" width="600" height="700" fill="#1f4e79" stroke="#183047" stroke-width="3"/>
+<text x="1200.0" y="940" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="30" font-weight="700" fill="#ffffff">OzAgriMate Platform</text>
+<text x="1200.0" y="975" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#ffffff">[Software System]</text>
+<text x="1200.0" y="1020" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="400" fill="#ffffff">IoT farm monitoring, irrigation</text>
+<text x="1200.0" y="1048" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="400" fill="#ffffff">management, alerts and AI-assisted</text>
+<text x="1200.0" y="1076" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="400" fill="#ffffff">decision support for Australian farms.</text>
+<polyline points="250.0,320 970,640" fill="none" stroke="#486174" stroke-width="3"/>
+<polygon points="951.8,641.5 970,640 959.0,625.5" fill="#486174"/>
+<rect x="450.3" y="451.0" width="319.4" height="50.0" fill="white"/>
+<text x="610.0" y="470.0" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Manages farms, access and approvals</text>
+<text x="610.0" y="492.0" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">[Web / Mobile App]</text>
+<polyline points="720.0,320 1085,640" fill="none" stroke="#486174" stroke-width="3"/>
+<polygon points="1067.2,636.1 1085,640 1078.8,622.8" fill="#486174"/>
+<rect x="744.4" y="497.0" width="316.2" height="50.0" fill="white"/>
+<text x="902.5" y="516.0" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Logs observations; requests irrigation</text>
+<text x="902.5" y="538.0" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">[Web / Mobile App]</text>
+<polyline points="1190.0,320 1200,640" fill="none" stroke="#486174" stroke-width="3"/>
+<polygon points="1190.7,624.3 1200,640 1208.3,623.7" fill="#486174"/>
+<rect x="1099.2" y="451.0" width="191.5" height="50.0" fill="white"/>
+<text x="1195.0" y="470.0" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Reviews data; advises</text>
+<text x="1195.0" y="492.0" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">[Web / Mobile App]</text>
+<polyline points="1660.0,320 1315,640" fill="none" stroke="#486174" stroke-width="3"/>
+<polygon points="1320.7,622.7 1315,640 1332.7,635.6" fill="#486174"/>
+<rect x="1375.2" y="497.0" width="224.6" height="50.0" fill="white"/>
+<text x="1487.5" y="516.0" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Monitors authorised farms</text>
+<text x="1487.5" y="538.0" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">[Web / Mobile App]</text>
+<polyline points="2130.0,320 1430,640" fill="none" stroke="#486174" stroke-width="3"/>
+<polygon points="1440.9,625.3 1430,640 1448.2,641.4" fill="#486174"/>
+<rect x="1624.3" y="451.0" width="311.4" height="50.0" fill="white"/>
+<text x="1780.0" y="470.0" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Administers tenants and integrations</text>
+<text x="1780.0" y="492.0" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">[Web / Mobile App]</text>
+<rect x="40" y="640" width="500" height="170" fill="#eee8e3" stroke="#42647e" stroke-width="2"/>
+<text x="290.0" y="678" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">IoT Sensors &amp; Farm Machinery</text>
+<text x="290.0" y="704" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[External Systems: ISOBUS / ADAPT]</text>
+<text x="290.0" y="736" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Field sensors, controllers and</text>
+<text x="290.0" y="762" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">machinery on each farm.</text>
+<rect x="40" y="820" width="500" height="170" fill="#eee8e3" stroke="#42647e" stroke-width="2"/>
+<text x="290.0" y="858" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Bureau of Meteorology API</text>
+<text x="290.0" y="884" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[External System]</text>
+<text x="290.0" y="916" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Weather forecasts, radar and</text>
+<text x="290.0" y="942" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">severe-weather warnings.</text>
+<rect x="40" y="1000" width="500" height="170" fill="#eee8e3" stroke="#42647e" stroke-width="2"/>
+<text x="290.0" y="1038" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">State Biosecurity Alert Feeds</text>
+<text x="290.0" y="1064" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[External System]</text>
+<text x="290.0" y="1096" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Regional pest and disease</text>
+<text x="290.0" y="1122" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">outbreak notices.</text>
+<rect x="40" y="1180" width="500" height="170" fill="#eee8e3" stroke="#42647e" stroke-width="2"/>
+<text x="290.0" y="1218" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Commodity / Market Price Feeds</text>
+<text x="290.0" y="1244" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[External System]</text>
+<text x="290.0" y="1276" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Live commodity and agricultural</text>
+<text x="290.0" y="1302" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">market prices.</text>
+<rect x="1860" y="640" width="500" height="170" fill="#eee8e3" stroke="#42647e" stroke-width="2"/>
+<text x="2110.0" y="678" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Legacy FMIS</text>
+<text x="2110.0" y="704" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[External System]</text>
+<text x="2110.0" y="736" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Farm management information</text>
+<text x="2110.0" y="762" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">systems holding historical records.</text>
+<rect x="1860" y="820" width="500" height="170" fill="#eee8e3" stroke="#42647e" stroke-width="2"/>
+<text x="2110.0" y="858" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">SMS / Push Notification Gateway</text>
+<text x="2110.0" y="884" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[External System]</text>
+<text x="2110.0" y="916" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Delivers critical alerts by SMS,</text>
+<text x="2110.0" y="942" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">voice, email and push.</text>
+<rect x="1860" y="1000" width="500" height="170" fill="#eee8e3" stroke="#42647e" stroke-width="2"/>
+<text x="2110.0" y="1038" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Third-Party Agri-Tech Apps</text>
+<text x="2110.0" y="1064" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[External Systems]</text>
+<text x="2110.0" y="1096" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Consume and publish data via</text>
+<text x="2110.0" y="1122" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">OzAgriMate's open API.</text>
+<rect x="1860" y="1180" width="500" height="170" fill="#eee8e3" stroke="#42647e" stroke-width="2" stroke-dasharray="14 9"/>
+<text x="2110.0" y="1218" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="23" font-weight="700" fill="#183047">Agri-Finance &amp; Insurance Partners</text>
+<text x="2110.0" y="1244" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#183047">[External Systems - extension]</text>
+<text x="2110.0" y="1276" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">Receive farmer-consented yield</text>
+<text x="2110.0" y="1302" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#183047">and compliance data.</text>
+<polyline points="540,695 900,695" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="884.0,703.8 900,695 884.0,686.2" fill="#486174"/>
+<rect x="572.7" y="664.0" width="294.6" height="50.0" fill="white"/>
+<text x="720.0" y="683" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Sends soil, climate and machinery</text>
+<text x="720.0" y="705" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">telemetry [via farm edge gateway]</text>
+<polyline points="900,775 540,775" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="556.0,766.2 540,775 556.0,783.8" fill="#486174"/>
+<rect x="567.0" y="744.0" width="306.0" height="50.0" fill="white"/>
+<text x="720.0" y="763" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Sends approved irrigation schedules</text>
+<text x="720.0" y="785" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">[authenticated edge channel]</text>
+<polyline points="540,915 900,915" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="884.0,923.8 900,915 884.0,906.2" fill="#486174"/>
+<rect x="583.7" y="884.0" width="272.6" height="50.0" fill="white"/>
+<text x="720.0" y="903" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Supplies forecasts and warnings</text>
+<text x="720.0" y="925" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">[HTTPS / JSON]</text>
+<polyline points="540,1095 900,1095" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="884.0,1103.8 900,1095 884.0,1086.2" fill="#486174"/>
+<rect x="605.7" y="1064.0" width="228.6" height="50.0" fill="white"/>
+<text x="720.0" y="1083" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Publishes outbreak notices</text>
+<text x="720.0" y="1105" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">[HTTPS feed]</text>
+<polyline points="540,1275 900,1275" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="884.0,1283.8 900,1275 884.0,1266.2" fill="#486174"/>
+<rect x="621.6" y="1244.0" width="196.9" height="50.0" fill="white"/>
+<text x="720.0" y="1263" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Supplies market prices</text>
+<text x="720.0" y="1285" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">[HTTPS feed]</text>
+<polyline points="1860,695 1500,695" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1516.0,686.2 1500,695 1516.0,703.8" fill="#486174"/>
+<rect x="1549.7" y="664.0" width="260.7" height="50.0" fill="white"/>
+<text x="1680.0" y="683" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Imports historical farm records</text>
+<text x="1680.0" y="705" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">[file / API transfer]</text>
+<polyline points="1500,775 1860,775" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1844.0,783.8 1860,775 1844.0,766.2" fill="#486174"/>
+<rect x="1544.9" y="744.0" width="270.2" height="50.0" fill="white"/>
+<text x="1680.0" y="763" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Exports consented farm records</text>
+<text x="1680.0" y="785" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">[file / API transfer]</text>
+<polyline points="1500,915 1860,915" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1844.0,923.8 1860,915 1844.0,906.2" fill="#486174"/>
+<rect x="1561.1" y="884.0" width="237.7" height="50.0" fill="white"/>
+<text x="1680.0" y="903" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Sends critical alert requests</text>
+<text x="1680.0" y="925" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">[HTTPS]</text>
+<polyline points="1860,1095 1500,1095" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="1516.0,1086.2 1500,1095 1516.0,1103.8" fill="#486174"/>
+<rect x="1583.2" y="1064.0" width="193.5" height="50.0" fill="white"/>
+<text x="1680.0" y="1083" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Read and publish data</text>
+<text x="1680.0" y="1105" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">[Open REST API]</text>
+<polyline points="1500,1275 1860,1275" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="1844.0,1283.8 1860,1275 1844.0,1266.2" fill="#486174"/>
+<rect x="1559.2" y="1244.0" width="241.6" height="50.0" fill="white"/>
+<text x="1680.0" y="1263" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">Shares consented yield data</text>
+<text x="1680.0" y="1285" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#183047">[proposed extension]</text>
+<text x="40" y="1430" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="700" fill="#183047">Legend</text>
+<rect x="40" y="1450" width="60" height="36" fill="#1f4e79" stroke="#42647e" stroke-width="2"/>
+<text x="115" y="1476" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Software system in scope</text>
+<rect x="600" y="1450" width="60" height="36" fill="#e9edf1" stroke="#42647e" stroke-width="2"/>
+<text x="675" y="1476" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Person</text>
+<rect x="1160" y="1450" width="60" height="36" fill="#eee8e3" stroke="#42647e" stroke-width="2"/>
+<text x="1235" y="1476" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">External system</text>
+<rect x="1720" y="1450" width="60" height="36" fill="#eee8e3" stroke="#42647e" stroke-width="2" stroke-dasharray="14 9"/>
+<text x="1795" y="1476" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Proposed extension (outside prototype)</text>
+<polyline points="40,1540 140,1540" fill="none" stroke="#486174" stroke-width="2"/>
+<polygon points="124.0,1548.8 140,1540 124.0,1531.2" fill="#486174"/>
+<text x="155" y="1546" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Interaction; arrow shows direction of the main data flow</text>
+<polyline points="900,1540 1000,1540" fill="none" stroke="#486174" stroke-width="2" stroke-dasharray="14 9"/>
+<polygon points="984.0,1548.8 1000,1540 984.0,1531.2" fill="#486174"/>
+<text x="1015" y="1546" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#183047">Proposed extension interaction</text>
+<text x="40" y="1605" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-style="italic" fill="#183047">Carbon verification, drone micro-dosing and trade execution are bounded extensions from Assignment 2; they are not part of the eight-endpoint prototype.</text>
+<text x="40" y="1635" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="18" font-style="italic" fill="#183047">Field equipment connects through the Farm Edge Gateway shown in the container view; ISOBUS, ADAPT, LoRaWAN and NB-IoT are adapted there.</text>
+</svg>
