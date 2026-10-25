@@ -16,7 +16,11 @@ class RunAllTests(unittest.TestCase):
                       ("Telemetry", "GET", "/farms/farm-001/telemetry", None, "demo-owner-a", 200),
                       ("Irrigation and Alerts", "POST", "/farms/farm-001/irrigation-requests",
                        {"paddockId": "north-paddock", "scheduledStart": "2026-11-02T19:00:00Z",
-                        "durationMinutes": 90, "waterDepthMm": 18.5}, "demo-owner-a", 201)]
+                        "durationMinutes": 90, "waterDepthMm": 18.5}, "demo-owner-a", 201),
+                      ("Irrigation and Alerts", "POST", "/farms/farm-001/alert-rules",
+                       {"name": "Dry soil", "sensorId": "sensor-north-01", "metric": "soilMoisture",
+                        "operator": "<", "threshold": 20, "unit": "percent", "severity": "warning",
+                        "reminderMinutes": None}, "demo-owner-a", 201)]
             for name, method, path, body, token, expected in checks:
                 with self.subTest(service=name):
                     connection = http.client.HTTPConnection("127.0.0.1", ports[name], timeout=5)

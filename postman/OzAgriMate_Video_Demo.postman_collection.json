@@ -1,0 +1,666 @@
+{
+ "info": {
+  "name": "OzAgriMate - Video Demo (all 8 endpoints)",
+  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+  "description": "Start everything fresh with `py -3 run_all.py`, then run in order. Covers all eight endpoints with a success case and relevant error cases each."
+ },
+ "variable": [
+  {
+   "key": "farmUrl",
+   "value": "http://127.0.0.1:8001"
+  },
+  {
+   "key": "telemetryUrl",
+   "value": "http://127.0.0.1:8002"
+  },
+  {
+   "key": "irrigationAlertsUrl",
+   "value": "http://127.0.0.1:8003"
+  },
+  {
+   "key": "farmId",
+   "value": ""
+  },
+  {
+   "key": "createdFarm",
+   "value": ""
+  },
+  {
+   "key": "firstReceivedAt",
+   "value": ""
+  },
+  {
+   "key": "requestId",
+   "value": ""
+  },
+  {
+   "key": "ruleId",
+   "value": ""
+  }
+ ],
+ "item": [
+  {
+   "name": "Farm Management - port 8001",
+   "item": [
+    {
+     "name": "01 POST /farms - create farm (201)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer demo-owner-a"
+       }
+      ],
+      "url": "{{farmUrl}}/farms",
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"name\": \"Riverbend Farm\",\n  \"latitude\": -36.36,\n  \"longitude\": 145.4,\n  \"areaHectares\": 125.5\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test(\"HTTP 201\", function () { pm.response.to.have.status(201); });",
+         "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+         "if (pm.response.code === 201) { pm.collectionVariables.set(\"farmId\", pm.response.json().id); pm.collectionVariables.set(\"createdFarm\", JSON.stringify(pm.response.json())); }",
+         "pm.test(\"Creation contract\", function () { const v=pm.response.json(); pm.expect(v).to.have.all.keys(\"id\",\"name\",\"latitude\",\"longitude\",\"areaHectares\"); pm.expect(v.name).to.eql(\"Riverbend Farm\"); pm.expect(pm.response.headers.get(\"Location\")).to.eql(\"/farms/\"+v.id); });"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "02 GET /farms/{farmId} - retrieve farm (200)",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer demo-owner-a"
+       }
+      ],
+      "url": "{{farmUrl}}/farms/{{farmId}}"
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+         "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+         "pm.test(\"Retrieved record matches creation\", function () { pm.expect(pm.response.json()).to.deep.eql(JSON.parse(pm.collectionVariables.get(\"createdFarm\"))); });"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "03 GET /farms/{farmId} - other owner denied (404)",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer demo-owner-b"
+       }
+      ],
+      "url": "{{farmUrl}}/farms/{{farmId}}"
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test(\"HTTP 404\", function () { pm.response.to.have.status(404); });",
+         "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+         "pm.test(\"Error code\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FARM_NOT_FOUND\"); });"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "04 POST /farms - worker cannot create (403)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer demo-worker-a"
+       }
+      ],
+      "url": "{{farmUrl}}/farms",
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"name\": \"Riverbend Farm\",\n  \"latitude\": -36.36,\n  \"longitude\": 145.4,\n  \"areaHectares\": 125.5\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test(\"HTTP 403\", function () { pm.response.to.have.status(403); });",
+         "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+         "pm.test(\"Error code\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FORBIDDEN\"); });"
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Telemetry - port 8002",
+   "item": [
+    {
+     "name": "05 POST /telemetry - gateway submits reading (201)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer demo-gateway-001"
+       }
+      ],
+      "url": "{{telemetryUrl}}/farms/farm-001/telemetry",
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"schemaVersion\": 1,\n  \"readingId\": \"sm-north-01-20261023T2045Z\",\n  \"deviceId\": \"sm-north-01\",\n  \"paddockId\": \"north-paddock\",\n  \"metric\": \"soilMoisture\",\n  \"value\": 29.7,\n  \"unit\": \"%\",\n  \"observedAt\": \"2026-10-23T20:45:00Z\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test(\"HTTP 201\", function () { pm.response.to.have.status(201); });",
+         "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+         "pm.test(\"Reading stored as ACCEPTED with exact contract\", function () { const v=pm.response.json(); pm.expect(v).to.have.all.keys(\"readingId\",\"farmId\",\"deviceId\",\"paddockId\",\"metric\",\"value\",\"unit\",\"observedAt\",\"receivedAt\",\"status\",\"quarantineReasons\",\"schemaVersion\"); pm.expect(v.status).to.eql(\"ACCEPTED\"); pm.expect(v.quarantineReasons).to.eql([]); pm.expect(v.farmId).to.eql(\"farm-001\"); pm.expect(v.value).to.eql(29.7); pm.collectionVariables.set(\"firstReceivedAt\", v.receivedAt); });"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "06 POST /telemetry - spike quarantined (201)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer demo-gateway-001"
+       }
+      ],
+      "url": "{{telemetryUrl}}/farms/farm-001/telemetry",
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"schemaVersion\": 1,\n  \"readingId\": \"sm-north-01-20261023T2100Z\",\n  \"deviceId\": \"sm-north-01\",\n  \"paddockId\": \"north-paddock\",\n  \"metric\": \"soilMoisture\",\n  \"value\": 88.0,\n  \"unit\": \"%\",\n  \"observedAt\": \"2026-10-23T21:00:00Z\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test(\"HTTP 201\", function () { pm.response.to.have.status(201); });",
+         "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+         "pm.test(\"Stored as QUARANTINED with reason\", function () { const v=pm.response.json(); pm.expect(v.status).to.eql(\"QUARANTINED\"); pm.expect(v.quarantineReasons).to.eql([\"SPIKE_DETECTED\"]); });"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "07 POST /telemetry - out-of-range value (422)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer demo-gateway-001"
+       }
+      ],
+      "url": "{{telemetryUrl}}/farms/farm-001/telemetry",
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"schemaVersion\": 1,\n  \"readingId\": \"bad-range\",\n  \"deviceId\": \"sm-north-01\",\n  \"paddockId\": \"north-paddock\",\n  \"metric\": \"soilMoisture\",\n  \"value\": 101,\n  \"unit\": \"%\",\n  \"observedAt\": \"2026-10-23T20:45:00Z\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+         "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+         "pm.test(\"Error code VALIDATION_ERROR\", function () { pm.expect(pm.response.json().error.code).to.eql(\"VALIDATION_ERROR\"); });"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "08 GET /telemetry - owner lists readings (200)",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Authorization",
+        "value": "Bearer demo-owner-a"
+       }
+      ],
+      "url": "{{telemetryUrl}}/farms/farm-001/telemetry?metric=soilMoisture&deviceId=sm-north-01"
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+         "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+         "pm.test(\"Three seeded + one new accepted reading, in time order\", function () { const v=pm.response.json(); pm.expect(v).to.have.all.keys(\"farmId\",\"count\",\"hasMore\",\"readings\"); pm.expect(v.count).to.eql(4); pm.expect(v.hasMore).to.eql(false); pm.expect(v.readings.map(r=>r.value)).to.eql([31.2,30.8,30.1,29.7]); pm.expect(v.readings.every(r=>r.status===\"ACCEPTED\")).to.eql(true); });"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "09 GET /telemetry - other owner denied (404)",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Authorization",
+        "value": "Bearer demo-owner-b"
+       }
+      ],
+      "url": "{{telemetryUrl}}/farms/farm-001/telemetry"
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test(\"HTTP 404\", function () { pm.response.to.have.status(404); });",
+         "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+         "pm.test(\"Error code FARM_NOT_FOUND\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FARM_NOT_FOUND\"); });"
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Irrigation and Alerts - port 8003 (irrigation requests)",
+   "item": [
+    {
+     "name": "10 POST /irrigation-requests - create PENDING (201)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer demo-worker-a"
+       }
+      ],
+      "url": "{{irrigationAlertsUrl}}/farms/farm-001/irrigation-requests",
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"paddockId\": \"north-paddock\",\n  \"scheduledStart\": \"2026-11-02T19:00:00Z\",\n  \"durationMinutes\": 90,\n  \"waterDepthMm\": 18.5,\n  \"notes\": \"Pre-heatwave watering\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test(\"HTTP 201\", function () { pm.response.to.have.status(201); });",
+         "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+         "if (pm.response.code === 201) { pm.collectionVariables.set(\"requestId\", pm.response.json().id); }",
+         "pm.test(\"Created as PENDING with server-assigned fields\", function () { const v=pm.response.json(); pm.expect(v).to.have.all.keys(\"id\",\"farmId\",\"paddockId\",\"scheduledStart\",\"durationMinutes\",\"waterDepthMm\",\"notes\",\"status\",\"requestedBy\",\"version\"); pm.expect(v.status).to.eql(\"PENDING\"); pm.expect(v.requestedBy).to.eql(\"worker-a\"); pm.expect(v.version).to.eql(1); pm.expect(pm.response.headers.get(\"Location\")).to.eql(\"/farms/farm-001/irrigation-requests/\"+v.id); });"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "11 PUT /irrigation-requests/{id} - replace pending (200)",
+     "request": {
+      "method": "PUT",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer demo-worker-a"
+       }
+      ],
+      "url": "{{irrigationAlertsUrl}}/farms/farm-001/irrigation-requests/{{requestId}}",
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"paddockId\": \"south-paddock\",\n  \"scheduledStart\": \"2026-11-03T18:30:00Z\",\n  \"durationMinutes\": 60,\n  \"waterDepthMm\": 12\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+         "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+         "pm.test(\"Full replacement applied, still PENDING\", function () { const v=pm.response.json(); pm.expect(v.id).to.eql(pm.collectionVariables.get(\"requestId\")); pm.expect(v.paddockId).to.eql(\"south-paddock\"); pm.expect(v.durationMinutes).to.eql(60); pm.expect(v.notes).to.eql(\"\"); pm.expect(v.status).to.eql(\"PENDING\"); pm.expect(v.version).to.eql(2); });"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "12 PUT /irrigation-requests/{id} - approved request (409)",
+     "request": {
+      "method": "PUT",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer demo-owner-a"
+       }
+      ],
+      "url": "{{irrigationAlertsUrl}}/farms/farm-001/irrigation-requests/irr-001",
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"paddockId\": \"north-paddock\",\n  \"scheduledStart\": \"2026-11-02T19:00:00Z\",\n  \"durationMinutes\": 90,\n  \"waterDepthMm\": 18.5,\n  \"notes\": \"Pre-heatwave watering\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test(\"HTTP 409\", function () { pm.response.to.have.status(409); });",
+         "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+         "pm.test(\"Error code REQUEST_NOT_EDITABLE\", function () { pm.expect(pm.response.json().error.code).to.eql(\"REQUEST_NOT_EDITABLE\"); });"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "13 POST /irrigation-requests - above safe limit (422)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer demo-worker-a"
+       }
+      ],
+      "url": "{{irrigationAlertsUrl}}/farms/farm-001/irrigation-requests",
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"paddockId\": \"north-paddock\",\n  \"scheduledStart\": \"2026-11-02T19:00:00Z\",\n  \"durationMinutes\": 241,\n  \"waterDepthMm\": 18.5,\n  \"notes\": \"Pre-heatwave watering\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+         "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+         "pm.test(\"Error code VALIDATION_ERROR\", function () { pm.expect(pm.response.json().error.code).to.eql(\"VALIDATION_ERROR\"); });"
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Irrigation and Alerts - port 8003 (alert rules)",
+   "item": [
+    {
+     "name": "14 POST /alert-rules - create rule (201)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer demo-owner-a"
+       }
+      ],
+      "url": "{{irrigationAlertsUrl}}/farms/farm-001/alert-rules",
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test(\"HTTP 201\", function () { pm.response.to.have.status(201); });",
+         "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+         "if (pm.response.code === 201) { pm.collectionVariables.set(\"ruleId\", pm.response.json().ruleId); }",
+         "pm.test(\"Rule stored with server-assigned id\", function () { const v=pm.response.json(); pm.expect(v).to.have.all.keys(\"name\",\"sensorId\",\"metric\",\"operator\",\"threshold\",\"unit\",\"severity\",\"reminderMinutes\",\"ruleId\",\"farmId\"); pm.expect(v.farmId).to.eql(\"farm-001\"); pm.expect(v.severity).to.eql(\"critical\"); pm.expect(pm.response.headers.get(\"Location\")).to.eql(\"/farms/farm-001/alert-rules/\"+v.ruleId); });"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "15 POST /alert-rules - worker forbidden (403)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer demo-worker-a"
+       }
+      ],
+      "url": "{{irrigationAlertsUrl}}/farms/farm-001/alert-rules",
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test(\"HTTP 403\", function () { pm.response.to.have.status(403); });",
+         "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+         "pm.test(\"Error code FORBIDDEN\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FORBIDDEN\"); });"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "16 DELETE /alert-rules/{id} - delete rule (204)",
+     "request": {
+      "method": "DELETE",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer demo-owner-a"
+       }
+      ],
+      "url": "{{irrigationAlertsUrl}}/farms/farm-001/alert-rules/{{ruleId}}"
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test(\"HTTP 204\", function () { pm.response.to.have.status(204); });",
+         "pm.test(\"No response body\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(null); });"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "17 DELETE /alert-rules/{id} - already deleted (404)",
+     "request": {
+      "method": "DELETE",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer demo-owner-a"
+       }
+      ],
+      "url": "{{irrigationAlertsUrl}}/farms/farm-001/alert-rules/{{ruleId}}"
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test(\"HTTP 404\", function () { pm.response.to.have.status(404); });",
+         "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+         "pm.test(\"Error code RULE_NOT_FOUND\", function () { pm.expect(pm.response.json().error.code).to.eql(\"RULE_NOT_FOUND\"); });"
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,526 @@
+{
+ "info": {
+  "name": "Bradley - OzAgriMate Alert Rules",
+  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+  "description": "Run in order against a freshly started Irrigation and Alerts service (port 8003). Only farm owners manage alert rules. Fixture tokens are demonstration identities."
+ },
+ "variable": [
+  {
+   "key": "baseUrl",
+   "value": "http://127.0.0.1:8003"
+  },
+  {
+   "key": "ruleId",
+   "value": ""
+  }
+ ],
+ "item": [
+  {
+   "name": "01 Create critical soil-moisture rule - owner A",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/alert-rules",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 201\", function () { pm.response.to.have.status(201); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "if (pm.response.code === 201) { pm.collectionVariables.set(\"ruleId\", pm.response.json().ruleId); }",
+       "pm.test(\"Rule stored with server-assigned id\", function () { const v=pm.response.json(); pm.expect(v).to.have.all.keys(\"name\",\"sensorId\",\"metric\",\"operator\",\"threshold\",\"unit\",\"severity\",\"reminderMinutes\",\"ruleId\",\"farmId\"); pm.expect(v.farmId).to.eql(\"farm-001\"); pm.expect(v.severity).to.eql(\"critical\"); pm.expect(pm.response.headers.get(\"Location\")).to.eql(\"/farms/farm-001/alert-rules/\"+v.ruleId); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "02 Create rule with no reminder (trimmed name)",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/alert-rules",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"name\": \"  Hot afternoon  \",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"airTemperature\",\n  \"operator\": \">\",\n  \"threshold\": 38,\n  \"unit\": \"celsius\",\n  \"severity\": \"warning\",\n  \"reminderMinutes\": null\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 201\", function () { pm.response.to.have.status(201); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Name trimmed, reminder null\", function () { const v=pm.response.json(); pm.expect(v.name).to.eql(\"Hot afternoon\"); pm.expect(v.reminderMinutes).to.eql(null); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "03 Reject invalid operator",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/alert-rules",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \">=\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code VALIDATION_ERROR\", function () { pm.expect(pm.response.json().error.code).to.eql(\"VALIDATION_ERROR\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "04 Reject reminder above one week",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/alert-rules",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 10081\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code VALIDATION_ERROR\", function () { pm.expect(pm.response.json().error.code).to.eql(\"VALIDATION_ERROR\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "05 Reject caller-supplied ruleId",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/alert-rules",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30,\n  \"ruleId\": \"rule-777\"\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code VALIDATION_ERROR\", function () { pm.expect(pm.response.json().error.code).to.eql(\"VALIDATION_ERROR\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "06 Worker cannot create rules",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-worker-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/alert-rules",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 403\", function () { pm.response.to.have.status(403); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code FORBIDDEN\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FORBIDDEN\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "07 Another owner cannot create on farm-001",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-b"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/alert-rules",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 404\", function () { pm.response.to.have.status(404); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code FARM_NOT_FOUND\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FARM_NOT_FOUND\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "08 Reject when farm access is stale",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-003/alert-rules",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 503\", function () { pm.response.to.have.status(503); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code FARM_ACCESS_STALE\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FARM_ACCESS_STALE\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "09 Missing authentication",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/alert-rules",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 401\", function () { pm.response.to.have.status(401); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code UNAUTHENTICATED\", function () { pm.expect(pm.response.json().error.code).to.eql(\"UNAUTHENTICATED\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "10 Another owner cannot delete through their farm",
+   "request": {
+    "method": "DELETE",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-b"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-002/alert-rules/{{ruleId}}"
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 404\", function () { pm.response.to.have.status(404); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code RULE_NOT_FOUND\", function () { pm.expect(pm.response.json().error.code).to.eql(\"RULE_NOT_FOUND\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "11 Worker cannot delete rules",
+   "request": {
+    "method": "DELETE",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-worker-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/alert-rules/{{ruleId}}"
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 403\", function () { pm.response.to.have.status(403); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code FORBIDDEN\", function () { pm.expect(pm.response.json().error.code).to.eql(\"FORBIDDEN\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "12 Delete rule - owner A",
+   "request": {
+    "method": "DELETE",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/alert-rules/{{ruleId}}"
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 204\", function () { pm.response.to.have.status(204); });",
+       "pm.test(\"No response body\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(null); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "13 Delete same rule again",
+   "request": {
+    "method": "DELETE",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/alert-rules/{{ruleId}}"
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 404\", function () { pm.response.to.have.status(404); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code RULE_NOT_FOUND\", function () { pm.expect(pm.response.json().error.code).to.eql(\"RULE_NOT_FOUND\"); });"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "14 Unsupported method on rule",
+   "request": {
+    "method": "PUT",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer demo-owner-a"
+     }
+    ],
+    "url": "{{baseUrl}}/farms/farm-001/alert-rules/{{ruleId}}",
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"name\": \"Dry north paddock\",\n  \"sensorId\": \"sensor-north-01\",\n  \"metric\": \"soilMoisture\",\n  \"operator\": \"<\",\n  \"threshold\": 20,\n  \"unit\": \"percent\",\n  \"severity\": \"critical\",\n  \"reminderMinutes\": 30\n}",
+     "options": {
+      "raw": {
+       "language": "json"
+      }
+     }
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "type": "text/javascript",
+      "exec": [
+       "pm.test(\"HTTP 405\", function () { pm.response.to.have.status(405); });",
+       "pm.test(\"JSON response\", function () { pm.response.to.be.json; });",
+       "pm.test(\"Error code METHOD_NOT_ALLOWED\", function () { pm.expect(pm.response.json().error.code).to.eql(\"METHOD_NOT_ALLOWED\"); });",
+       "pm.test(\"Allow header\", function () { pm.expect(pm.response.headers.get(\"Allow\")).to.eql(\"DELETE\"); });"
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}

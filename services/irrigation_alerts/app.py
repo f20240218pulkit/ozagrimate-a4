@@ -3,6 +3,7 @@ import argparse
 import json
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import time
+from .alert_rule_service import AlertRuleService
 from .api import IrrigationAlertsApi
 from .farm_events import FixtureFarmEventSource
 from .farm_projection import FarmAccessProjection
@@ -15,14 +16,16 @@ MAX_BODY = 65536
 def create_server(host="127.0.0.1", port=8003, clock=time.time):
     projection = FarmAccessProjection()
     events = FixtureFarmEventSource(projection, clock)
-    api = IrrigationAlertsApi(IrrigationService(InMemoryIrrigationRepository(), projection, events, clock))
+    api = IrrigationAlertsApi(IrrigationService(InMemoryIrrigationRepository(), projection, events, clock),
+                              AlertRuleService(projection, events, clock))
 
     class Handler(BaseHTTPRequestHandler):
         def respond(self, status, headers, payload):
-            data = json.dumps(payload, allow_nan=False).encode("utf-8")
+            data = b"" if status == 204 else json.dumps(payload, allow_nan=False).encode("utf-8")
             self.send_response(status)
-            self.send_header("Content-Type", "application/json; charset=utf-8")
-            self.send_header("Content-Length", str(len(data)))
+            if status != 204:  # 204 No Content carries no body or entity headers
+                self.send_header("Content-Type", "application/json; charset=utf-8")
+                self.send_header("Content-Length", str(len(data)))
             self.send_header("Cache-Control", "no-store")
             for key, value in headers.items():
                 self.send_header(key, value)
